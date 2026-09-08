@@ -5,7 +5,7 @@ from __future__ import annotations
 import numpy as np
 
 from cozmo.ingest.photos import PhotoRoom
-from cozmo.reconstruct.openings import Detection, detect_openings
+from cozmo.reconstruct.openings import Detection, detect_openings, door_widths_scene_units
 from cozmo.reconstruct.planes import (
     floor_polygon_from_planes,
     polygon_area,
@@ -14,6 +14,7 @@ from cozmo.reconstruct.planes import (
 )
 from cozmo.reconstruct.scale import PHOTO_AREA_REL, PHOTO_CEILING_REL, Scale, estimate_scale
 from cozmo.reconstruct.sparse3d import reconstruct_sparse
+from cozmo.reconstruct.tiles import tile_spacings_scene_units
 from cozmo.schema import Interval, Opening, Point2, RoomPlan, Wall
 
 
@@ -50,9 +51,27 @@ def reconstruct_room(room: PhotoRoom, backend: str = "auto") -> RoomPlan:
 
     segs = walls_from_polygon(poly)
     openings_u = _place_openings(poly, segs, dets, scene)
-    door_widths_u = [o[3] for o in openings_u if o[0] == "door"]
-    median_door_u = float(np.median(door_widths_u)) if door_widths_u else None
-    scale = estimate_scale(dets, median_door_u)
+    real_doors_u = door_widths_scene_units(dets, list(room.images), scene)
+    # YOLO boxes are fat (frame + wall). Tightest jamb-to-jamb is the 0.80 m leaf.
+    door_u = float(min(real_doors_u)) if real_doors_u else None
+    tile_u = tile_spacings_scene_units(list(room.images), scene)
+    scale = estimate_scale(dets, real_door_width_u=door_u, tile_spacings_u=tile_u)
+    if scale.method == "door_width_3d" and not _plausible_metric_room(poly, scale.metres_per_unit):
+        notes.append("door_scale_implausible_falling_back_to_tiles")
+        scale = estimate_scale(dets, real_door_width_u=None, tile_spacings_u=tile_u)
+    if scale.method == "tile_0.80m" and tile_u and not _plausible_metric_room(poly, scale.metres_per_unit):
+        alt = Scale(1.20 / tile_u[0], "tile_1.20m", 0.10)
+        if _plausible_metric_room(poly, alt.metres_per_unit):
+            notes.append("tile_period_assigned_1.20m")
+            scale = alt
+    if scale.method.startswith("tile") and not _plausible_metric_room(poly, scale.metres_per_unit):
+        notes.append("tile_scale_implausible_unscaled")
+        scale = Scale(1.0, "unscaled_scene_units", 0.50)
+    notes.append(f"scale={scale.method} mpu={scale.metres_per_unit:.5f}")
+    if real_doors_u:
+        notes.append(f"door_widths_u={[round(w, 4) for w in real_doors_u]}")
+    if tile_u:
+        notes.append(f"tile_spacings_u={[round(s, 4) for s in tile_u]}")
     if scene.backend != "vggt":
         scale = Scale(scale.metres_per_unit, scale.method, max(scale.rel_error, 0.35))
 
@@ -79,9 +98,12 @@ def reconstruct_room(room: PhotoRoom, backend: str = "auto") -> RoomPlan:
         # After door-width scale, the scaling door is tautological — say so.
         method = scale.method
         rel = scale.rel_error
-        if kind == "door" and scale.method == "door_width_prior":
-            method = "door_width_prior_applied"
+        if kind == "door" and scale.method == "door_width_3d":
+            method = "door_width_3d_applied"
             rel = 0.05
+        if "hypothesized" in evidence:
+            method = "hypothesized_not_used_for_scale"
+            rel = max(rel, 0.25)
         t1 = min(1.0, t0 + (width_m / wall_len if wall_len else 0.1))
         openings.append(
             Opening(
@@ -108,6 +130,15 @@ def reconstruct_room(room: PhotoRoom, backend: str = "auto") -> RoomPlan:
         notes=notes,
         backend=scene.backend,
     )
+
+
+def _plausible_metric_room(poly: np.ndarray, mpu: float) -> bool:
+    """Photo-tier rooms are metres, not 6.67 m locked walls or centimetre boxes."""
+    segs = walls_from_polygon(poly * mpu)
+    if len(segs) < 2:
+        return False
+    lens = [float(np.linalg.norm(b - a)) for a, b in segs]
+    return min(lens) >= 1.8 and max(lens) <= 14.0
 
 
 def _empty_room(room: PhotoRoom, notes: list[str]) -> RoomPlan:

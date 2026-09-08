@@ -13,7 +13,7 @@ from cozmo.schema import PropertyPlan, SCHEMA_VERSION
 DISCLOSURES = [
     "VGGT facebook/VGGT-1B (if installed): pretrained few-view reconstruction, inference only.",
     "YOLO-World yolov8s-worldv2.pt: pretrained open-vocab detector, prompts door/window, inference only.",
-    "Photo-tier scale: interior door-width prior 0.80 m with wide CIs; not LiDAR-metric.",
+    "Photo-tier scale: 0.80 m door measured in 3D, else 0.80×1.20 m floor tiles. Never a fake 12% door. Not LiDAR-metric.",
 ]
 
 

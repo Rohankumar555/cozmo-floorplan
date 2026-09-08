@@ -8,7 +8,17 @@ from __future__ import annotations
 from dataclasses import dataclass
 from pathlib import Path
 
+import numpy as np
+
+PROMPT_CLASSES = ["door", "doorway", "door frame", "open door", "window"]
 CLASSES = ["door", "window"]
+KIND_MAP = {
+    "door": "door",
+    "doorway": "door",
+    "door frame": "door",
+    "open door": "door",
+    "window": "window",
+}
 WEIGHT_NAME = "yolov8s-worldv2.pt"
 
 
@@ -52,16 +62,16 @@ def _load_model():
         from ultralytics import YOLOWorld
 
         model = YOLOWorld(_weight_file())
-        model.set_classes(CLASSES)
+        model.set_classes(PROMPT_CLASSES)
     except Exception:
         model = YOLO(_weight_file())
         if hasattr(model, "set_classes"):
-            model.set_classes(CLASSES)
+            model.set_classes(PROMPT_CLASSES)
     _MODEL = model
     return model
 
 
-def detect_openings(images: list[Path], conf_min: float = 0.15) -> list[Detection]:
+def detect_openings(images: list[Path], conf_min: float = 0.08) -> list[Detection]:
     model = _load_model()
     out: list[Detection] = []
     for path in images:
@@ -72,19 +82,20 @@ def detect_openings(images: list[Path], conf_min: float = 0.15) -> list[Detectio
             continue
         for i in range(len(boxes)):
             cls_id = int(boxes.cls[i].item())
-            label = str(names.get(cls_id, CLASSES[cls_id] if cls_id < len(CLASSES) else "door"))
-            label = label.lower()
-            if label not in CLASSES:
-                # world model may return prompted order
-                if cls_id < len(CLASSES):
-                    label = CLASSES[cls_id]
+            raw = str(names.get(cls_id, "")).lower()
+            if raw not in KIND_MAP:
+                if cls_id < len(PROMPT_CLASSES):
+                    raw = PROMPT_CLASSES[cls_id].lower()
                 else:
                     continue
+            label = KIND_MAP.get(raw)
+            if label is None:
+                continue
             xyxy = boxes.xyxy[i].detach().cpu().numpy().tolist()
             score = float(boxes.conf[i].item())
             out.append(
                 Detection(
-                    kind=label,  # type: ignore[arg-type]
+                    kind=label,
                     conf=score,
                     xyxy=(float(xyxy[0]), float(xyxy[1]), float(xyxy[2]), float(xyxy[3])),
                     image=path,
@@ -128,4 +139,66 @@ def _iou(a: tuple[float, float, float, float], b: tuple[float, float, float, flo
 def bbox_aspect_is_door(det: Detection) -> bool:
     x0, y0, x1, y1 = det.xyxy
     w, h = max(1.0, x1 - x0), max(1.0, y1 - y0)
-    return h / w >= 1.4
+    return h / w >= 1.25
+
+
+def door_widths_scene_units(dets: list[Detection], images: list[Path], scene) -> list[float]:
+    """3D width of YOLO doors on VGGT pointmaps. Empty if no real door was measured."""
+    widths: list[float] = []
+    if not getattr(scene, "pointmaps", None):
+        return widths
+    for d in dets:
+        if d.kind != "door" or d.conf < 0.15:
+            continue
+        if not bbox_aspect_is_door(d) and d.conf < 0.25:
+            continue
+        w = _bbox_width_3d(d, images, scene)
+        if w is not None:
+            widths.append(w)
+    return widths
+
+
+def _bbox_width_3d(det: Detection, images: list[Path], scene) -> float | None:
+    try:
+        idx = images.index(det.image)
+    except ValueError:
+        return None
+    if idx >= len(scene.pointmaps):
+        return None
+    pm = scene.pointmaps[idx]
+    conf = scene.point_conf[idx] if scene.point_conf else None
+    ph, pw = pm.shape[:2]
+    from PIL import Image
+
+    ow, oh = Image.open(det.image).size
+    x0, y0, x1, y1 = det.xyxy
+    ix0 = int(np.clip(x0 / ow * pw, 0, pw - 1))
+    ix1 = int(np.clip(x1 / ow * pw, 0, pw - 1))
+    iy0 = int(np.clip(y0 / oh * ph, 0, ph - 1))
+    iy1 = int(np.clip(y1 / oh * ph, 0, ph - 1))
+    if ix1 <= ix0 + 2 or iy1 <= iy0 + 2:
+        return None
+    bw = ix1 - ix0
+    left_x = ix0 + max(1, int(0.08 * bw))
+    right_x = ix1 - max(1, int(0.08 * bw))
+    left = _column_xyz(pm, conf, iy0, iy1, left_x)
+    right = _column_xyz(pm, conf, iy0, iy1, right_x)
+    if left is None or right is None:
+        return None
+    width = float(np.linalg.norm(right - left))
+    if not (1e-4 < width < 8.0):
+        return None
+    return width
+
+
+def _column_xyz(pm, conf, y0: int, y1: int, x: int):
+    sl = pm[y0:y1, max(0, x - 1) : x + 2]
+    pts = sl.reshape(-1, 3)
+    if conf is not None:
+        cf = conf[y0:y1, max(0, x - 1) : x + 2].reshape(-1)
+        pts = pts[(cf > 0.2) & np.isfinite(pts).all(axis=1)]
+    else:
+        pts = pts[np.isfinite(pts).all(axis=1)]
+    if len(pts) < 4:
+        return None
+    return np.median(pts, axis=0)

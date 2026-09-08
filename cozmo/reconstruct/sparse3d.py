@@ -18,6 +18,7 @@ class SparseScene:
     backend: str
     pointmaps: list[np.ndarray] = field(default_factory=list)
     pointmap_hw: list[tuple[int, int]] = field(default_factory=list)
+    point_conf: list[np.ndarray] = field(default_factory=list)
     notes: list[str] = field(default_factory=list)
 
 
@@ -132,12 +133,14 @@ def _reconstruct_vggt(images: list[Path]) -> SparseScene:
         conf_np = np.ones(world_np.shape[:3], dtype=np.float32)
 
     pointmaps = []
+    confmaps = []
     hws = []
     chunks = []
     for i in range(world_np.shape[0]):
         pm = world_np[i]
         cf = conf_np[i]
         pointmaps.append(pm)
+        confmaps.append(cf)
         hws.append((pm.shape[0], pm.shape[1]))
         mask = cf > 0.25
         pts = pm[mask]
@@ -156,6 +159,7 @@ def _reconstruct_vggt(images: list[Path]) -> SparseScene:
         backend="vggt",
         pointmaps=pointmaps,
         pointmap_hw=hws,
+        point_conf=confmaps,
         notes=["pretrained: facebook/VGGT-1B", f"device={device.type}"],
     )
 
