@@ -1,5 +1,6 @@
 .DS_Store
 .venv/
+.venv312/
 venv/
 __pycache__/
 *.py[cod]
@@ -8,3 +9,8 @@ __pycache__/
 *.egg-info/
 dist/
 build/
+out/
+weights/
+*.pt
+.huggingface/
+runs/

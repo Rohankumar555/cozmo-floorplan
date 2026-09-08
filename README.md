@@ -13,12 +13,39 @@ captures/
   lidar/                     # depth + poses + intrinsics export (later)
 ```
 
-One command (to be added as the pipeline is built):
+## Run
 
 ```bash
-python -m cozmo run captures/ --out out/
+/opt/homebrew/bin/python3.12 -m venv .venv312
+source .venv312/bin/activate
+pip install -e .
+python -m cozmo run captures/ --out out/ --only room_01
 ```
 
-## Status
+Omit `--only` to run the **same per-room function** on every photo folder (still unstitched).
 
-Repo layout and capture contract only. Reconstruction, JSON schema export, and the rendered plan are not implemented yet.
+`--backend auto` uses VGGT when the `vggt` package is installed, otherwise a Manhattan line-box fallback. **Manhattan is not removed.**
+
+```bash
+source .venv312/bin/activate
+pip install einops huggingface_hub safetensors
+pip install "git+https://github.com/facebookresearch/vggt.git"
+python -m cozmo run captures/ --out out/ --only room_01 --backend vggt
+```
+
+Output:
+
+- `out/plan.json` — internal schema `cozmo.plan.v0` (CIs on every measurement)
+- `out/plan.svg` / `out/rooms/<id>.svg` — top-down sketch from the same object
+
+## What this slice does
+
+Photo-tier **one room** (and the same code path for other folders): few-view 3D → planes → polygon → YOLO-World doors/windows → door-width scale with **wide** intervals.
+
+Not yet: door-graph stitch, video recon, LiDAR, damage rules, drift ablation.
+
+## Disclosures
+
+- VGGT `facebook/VGGT-1B` — pretrained, inference only
+- YOLO-World `yolov8s-worldv2.pt` — pretrained, prompts `door` / `window`
+- Photo scale: 0.80 m interior door-width prior, not LiDAR-metric
