@@ -1,0 +1,50 @@
+{
+  "commit_note": "before furniture-hull fix; from out/plan.json photo VGGT",
+  "id": "room_01",
+  "walls": [
+    {
+      "id": "room_01-W0",
+      "length_m": 3.2460156126725535,
+      "ci": [
+        2.8564937391518472,
+        3.6355374861932597
+      ],
+      "method": "door_width_3d"
+    },
+    {
+      "id": "room_01-W1",
+      "length_m": 3.478389624967205,
+      "ci": [
+        3.0609828699711406,
+        3.8957963799632696
+      ],
+      "method": "door_width_3d"
+    },
+    {
+      "id": "room_01-W2",
+      "length_m": 3.246015612672553,
+      "ci": [
+        2.856493739151847,
+        3.6355374861932592
+      ],
+      "method": "door_width_3d"
+    },
+    {
+      "id": "room_01-W3",
+      "length_m": 3.4783896249672055,
+      "ci": [
+        3.060982869971141,
+        3.89579637996327
+      ],
+      "method": "door_width_3d"
+    }
+  ],
+  "area_m2": 11.290907029601776,
+  "ceiling_m": 4.101809213599817,
+  "tape": {
+    "a": 3.4,
+    "b": 4.0,
+    "ceiling": 2.45
+  },
+  "worst_gate": "room_01 long wall 3.48 vs tape 4.00 (\u221213%), photo \u00b18%"
+}

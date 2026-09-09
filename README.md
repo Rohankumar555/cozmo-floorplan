@@ -40,6 +40,15 @@ Output:
 - `out/plan.json` — internal schema `cozmo.plan.v0` (CIs on every measurement)
 - `out/plan.svg` / `out/rooms/<id>.svg` — top-down sketch from the same object
 
+## Docs (submit packet)
+
+- `docs/protocol.md` — one-page stock capture (Camera, Stray, Polycam)
+- `docs/device-matrix.md` — which hardware runs which tier
+- `reports/compliance-matrix.md`
+- `reports/benchmark.md` — tape vs Polycam vs our tiers
+- `reports/fix-loop.md` — worst gate + shipped hull fix
+- `reports/technical-report.md` — architecture (keep under 6 pages)
+
 ## What this slice does
 
 Photo-tier per room, then a **door-graph stitch** (hub = hallway folder) when you run all folders. `--tier video` cuts the walkthrough at door holds and stitches **in walk order** (`walk_graph`). `--tier lidar` unprojects a Stray RGB-D walk (metric depth) and aligns the floor plane (not poses-as-is).

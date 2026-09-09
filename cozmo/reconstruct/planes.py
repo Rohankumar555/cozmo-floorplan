@@ -131,8 +131,8 @@ def floor_polygon_from_planes(
 ) -> tuple[np.ndarray, float, np.ndarray]:
     """Return (quad in floor coords, ceiling height in scene units, up vector).
 
-    VGGT clouds include furniture; we take a near-floor slice and a min-area
-    rectangle so the plan stays a room, not a 40-vertex hull.
+    VGGT clouds include furniture. An 80th-percentile radius clip around the
+    dense near-floor core throws away sparse plaster. Keep the outer 96%.
     """
     if points is None or len(points) < 10:
         if not planes:
@@ -162,7 +162,7 @@ def floor_polygon_from_planes(
     xy = np.stack([(near - origin) @ x_axis, (near - origin) @ y_axis], axis=1)
     c = np.median(xy, axis=0)
     r = np.linalg.norm(xy - c, axis=1)
-    xy = xy[r <= np.percentile(r, 80)]
+    xy = xy[r <= np.percentile(r, 96)]
     poly = _min_area_rect(xy)
     return poly, ceiling, up
 
