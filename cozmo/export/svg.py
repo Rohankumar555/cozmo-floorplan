@@ -18,7 +18,7 @@ def write_property_svgs(plan: PropertyPlan, out_dir: Path) -> list[Path]:
         written.append(path)
     if len(plan.rooms) == 1:
         (out_dir / "plan.svg").write_text(_room_svg(plan.rooms[0]), encoding="utf-8")
-    elif plan.stitch in ("door_graph", "walk_graph"):
+    elif plan.stitch in ("door_graph", "walk_graph", "lidar_poses"):
         (out_dir / "plan.svg").write_text(_stitched_svg(plan), encoding="utf-8")
     else:
         (out_dir / "plan.svg").write_text(_unstitched_svg(plan), encoding="utf-8")
@@ -98,6 +98,9 @@ def _stitched_svg(plan: PropertyPlan, width: int = 1100, height: int = 800) -> s
     if plan.stitch == "walk_graph":
         title = "Stitched plan (walk-graph)"
         subtitle = f"{len(plan.rooms)} rooms · {len(plan.adjacency)} walk links · door holds · sequential snaps"
+    elif plan.stitch == "lidar_poses":
+        title = "Stitched plan (LiDAR poses)"
+        subtitle = f"{len(plan.rooms)} rooms · {len(plan.adjacency)} walk links · floor-plane aligned, not poses-as-is"
     else:
         title = "Stitched plan (door-graph)"
         subtitle = f"{len(plan.rooms)} rooms · {len(plan.adjacency)} door links · detector doors · same-wall pack"

@@ -76,7 +76,7 @@ class Adjacency(BaseModel):
 class PropertyPlan(BaseModel):
     schema_version: str = SCHEMA_VERSION
     tier: Literal["photos", "video", "lidar"] = "photos"
-    stitch: Literal["unstitched", "door_graph", "walk_graph"] = "unstitched"
+    stitch: Literal["unstitched", "door_graph", "walk_graph", "lidar_poses"] = "unstitched"
     rooms: list[RoomPlan]
     adjacency: list[Adjacency] = Field(default_factory=list)
     disclosures: list[str] = Field(default_factory=list)

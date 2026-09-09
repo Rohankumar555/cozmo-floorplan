@@ -10,7 +10,7 @@ Capture is Route 2 (stock iOS Camera + a LiDAR logging app). This repo is the re
 captures/
   photos/<room_name>/*.jpg   # 2–8 stills per room, no depth, no poses
   video/*.mov                # one walkthrough; cut at door holds (`--tier video`)
-  lidar/                     # depth + poses + intrinsics export (later)
+  lidar/<stray_export>/     # Stray Scanner: depth/, odometry.csv, camera_matrix.csv, rgb.mp4
 ```
 
 ## Run
@@ -32,6 +32,7 @@ pip install einops huggingface_hub safetensors
 pip install "git+https://github.com/facebookresearch/vggt.git"
 python -m cozmo run captures/ --out out/ --backend vggt
 python -m cozmo run captures/ --out out/video --tier video --backend vggt
+python -m cozmo run captures/ --out out/lidar --tier lidar
 ```
 
 Output:
@@ -41,9 +42,9 @@ Output:
 
 ## What this slice does
 
-Photo-tier per room, then a **door-graph stitch** (hub = hallway folder) when you run all folders. `--tier video` cuts the walkthrough at door holds and stitches **in walk order** (`walk_graph`). Drift: door snaps, not poses-as-is.
+Photo-tier per room, then a **door-graph stitch** (hub = hallway folder) when you run all folders. `--tier video` cuts the walkthrough at door holds and stitches **in walk order** (`walk_graph`). `--tier lidar` unprojects a Stray RGB-D walk (metric depth) and aligns the floor plane (not poses-as-is).
 
-Not yet: LiDAR, damage rules.
+Not yet: damage rules.
 
 ## Disclosures
 

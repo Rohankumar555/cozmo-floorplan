@@ -8,6 +8,7 @@ from pathlib import Path
 from cozmo.export.svg import write_property_svgs
 from cozmo.ingest.photos import load_photo_rooms
 from cozmo.ingest.walk import load_video_rooms
+from cozmo.reconstruct.lidar import reconstruct_lidar_dir
 from cozmo.reconstruct.room import reconstruct_room
 from cozmo.reconstruct.scale import VIDEO_AREA_REL, VIDEO_CEILING_REL, VIDEO_WALL_REL
 from cozmo.schema import PropertyPlan, SCHEMA_VERSION
@@ -29,6 +30,13 @@ VIDEO_DISCLOSURES = [
     "Stitch: walk-graph sequential snaps at doors between consecutive segments. Adjacency from the walk, not YOLO pairing.",
 ]
 
+LIDAR_DISCLOSURES = [
+    "Stray Scanner RGB-D: depth in millimetres, ARKit poses, camera_matrix.csv intrinsics. No learned recon.",
+    "LiDAR scale: metric from depth (mpu=1). Not the 0.80 m door ruler.",
+    "Drift: RANSAC floor-plane alignment (z-up), ablation vs poses-as-is XY. Not poses used as-is.",
+    "Rooms: whole walk, or cuts at odometry holds. Already in one world frame.",
+]
+
 
 def main(argv: list[str] | None = None) -> int:
     parser = argparse.ArgumentParser(prog="cozmo", description="iPhone capture → dimensioned plan")
@@ -38,9 +46,9 @@ def main(argv: list[str] | None = None) -> int:
     run.add_argument("--out", type=Path, default=Path("out"))
     run.add_argument(
         "--tier",
-        choices=("photos", "video"),
+        choices=("photos", "video", "lidar"),
         default="photos",
-        help="photos = per-folder stills. video = one walkthrough cut at door holds.",
+        help="photos = per-folder stills. video = walkthrough at door holds. lidar = Stray RGB-D.",
     )
     run.add_argument(
         "--only",
@@ -65,6 +73,39 @@ def _cmd_run(captures: Path, out: Path, only: str | None, backend: str, tier: st
     out = out.resolve()
     out.mkdir(parents=True, exist_ok=True)
     extra: dict = {"captures": str(captures), "backend": backend, "tier": tier}
+    if tier == "lidar":
+        built, lextra = reconstruct_lidar_dir(captures)
+        adjacency = lextra.pop("adjacency", [])
+        lextra.pop("_meta", None)
+        extra.update(lextra)
+        disclosures = LIDAR_DISCLOSURES
+        stitch_flag = "lidar_poses" if len(built) >= 2 else "unstitched"
+        if only:
+            key = only.lower()
+            built = [r for r in built if r.id == key]
+            if not built:
+                raise SystemExit(f"No LiDAR room matching --only {only}")
+            adjacency = []
+            stitch_flag = "unstitched"
+        plan = PropertyPlan(
+            schema_version=SCHEMA_VERSION,
+            tier="lidar",
+            stitch=stitch_flag,  # type: ignore[arg-type]
+            rooms=built,
+            adjacency=adjacency,
+            disclosures=disclosures,
+            extra=extra,
+        )
+        json_path = out / "plan.json"
+        json_path.write_text(plan.model_dump_json(indent=2), encoding="utf-8")
+        write_property_svgs(plan, out)
+        print(f"lidar dataset={extra.get('lidar_dataset')} frames={extra.get('frames_fused')}")
+        print(f"Wrote {json_path}")
+        print(f"Wrote {out / 'plan.svg'}")
+        for r in built:
+            print(f"  {r.id}: backend={r.backend} walls={len(r.walls)} area={r.floor_area.value:.1f}m2")
+        print(f"  stitch={stitch_flag} adjacencies={len(adjacency)}")
+        return 0
     if tier == "video":
         rooms, vextra = load_video_rooms(captures, out)
         extra.update(vextra)
