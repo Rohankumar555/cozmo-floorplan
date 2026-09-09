@@ -18,7 +18,7 @@ def write_property_svgs(plan: PropertyPlan, out_dir: Path) -> list[Path]:
         written.append(path)
     if len(plan.rooms) == 1:
         (out_dir / "plan.svg").write_text(_room_svg(plan.rooms[0]), encoding="utf-8")
-    elif plan.stitch == "door_graph":
+    elif plan.stitch in ("door_graph", "walk_graph"):
         (out_dir / "plan.svg").write_text(_stitched_svg(plan), encoding="utf-8")
     else:
         (out_dir / "plan.svg").write_text(_unstitched_svg(plan), encoding="utf-8")
@@ -95,12 +95,17 @@ def _stitched_svg(plan: PropertyPlan, width: int = 1100, height: int = 800) -> s
     def xy(x: float, y: float) -> tuple[float, float]:
         return pad + (x - minx) * scale, height - pad - (y - miny) * scale
 
+    if plan.stitch == "walk_graph":
+        title = "Stitched plan (walk-graph)"
+        subtitle = f"{len(plan.rooms)} rooms · {len(plan.adjacency)} walk links · door holds · sequential snaps"
+    else:
+        title = "Stitched plan (door-graph)"
+        subtitle = f"{len(plan.rooms)} rooms · {len(plan.adjacency)} door links · detector doors · same-wall pack"
     parts = [
-        '<text x="24" y="28" font-size="18" font-family="Helvetica">Stitched plan (door-graph)</text>',
+        f'<text x="24" y="28" font-size="18" font-family="Helvetica">{title}</text>',
         (
             f'<text x="24" y="48" font-size="12" font-family="Helvetica" fill="#444">'
-            f"{len(plan.rooms)} rooms · {len(plan.adjacency)} door links · "
-            f"detector doors · same-wall pack</text>"
+            f"{subtitle}</text>"
         ),
     ]
     for i, room in enumerate(plan.rooms):

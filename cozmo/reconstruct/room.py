@@ -18,7 +18,17 @@ from cozmo.reconstruct.tiles import tile_spacings_scene_units
 from cozmo.schema import Interval, Opening, Point2, RoomPlan, Wall
 
 
-def reconstruct_room(room: PhotoRoom, backend: str = "auto") -> RoomPlan:
+def reconstruct_room(
+    room: PhotoRoom,
+    backend: str = "auto",
+    *,
+    wall_rel: float | None = None,
+    area_rel: float | None = None,
+    ceiling_rel: float | None = None,
+) -> RoomPlan:
+    area_rel = PHOTO_AREA_REL if area_rel is None else area_rel
+    ceiling_rel = PHOTO_CEILING_REL if ceiling_rel is None else ceiling_rel
+    scale_rel = wall_rel  # None keeps photo door CI; video passes VIDEO_WALL_REL
     if not (2 <= len(room.images) <= 8):
         notes = [
             f"expected 2–8 stills, found {len(room.images)}",
@@ -55,7 +65,9 @@ def reconstruct_room(room: PhotoRoom, backend: str = "auto") -> RoomPlan:
     # YOLO boxes are fat (frame + wall). Tightest jamb-to-jamb is the 0.80 m leaf.
     door_u = float(min(real_doors_u)) if real_doors_u else None
     tile_u = tile_spacings_scene_units(list(room.images), scene)
-    scale = estimate_scale(dets, real_door_width_u=door_u, tile_spacings_u=tile_u)
+    scale = estimate_scale(
+        dets, real_door_width_u=door_u, tile_spacings_u=tile_u, rel_error=scale_rel
+    )
     if scale.method == "door_width_3d" and not _plausible_metric_room(poly, scale.metres_per_unit):
         notes.append("door_scale_implausible_falling_back_to_tiles")
         scale = estimate_scale(dets, real_door_width_u=None, tile_spacings_u=tile_u)
@@ -125,8 +137,8 @@ def reconstruct_room(room: PhotoRoom, backend: str = "auto") -> RoomPlan:
         polygon=[Point2(x=float(p[0]), y=float(p[1])) for p in poly_m],
         walls=walls,
         openings=openings,
-        ceiling_height=Interval.measured(ceiling_m, max(scale.rel_error, PHOTO_CEILING_REL), scale.method),
-        floor_area=Interval.measured(area_m, max(scale.rel_error, PHOTO_AREA_REL), scale.method, unit="m2"),
+        ceiling_height=Interval.measured(ceiling_m, max(scale.rel_error, ceiling_rel), scale.method),
+        floor_area=Interval.measured(area_m, max(scale.rel_error, area_rel), scale.method, unit="m2"),
         notes=notes,
         backend=scene.backend,
     )

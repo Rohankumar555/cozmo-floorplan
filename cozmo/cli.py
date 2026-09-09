@@ -7,15 +7,26 @@ from pathlib import Path
 
 from cozmo.export.svg import write_property_svgs
 from cozmo.ingest.photos import load_photo_rooms
+from cozmo.ingest.walk import load_video_rooms
 from cozmo.reconstruct.room import reconstruct_room
+from cozmo.reconstruct.scale import VIDEO_AREA_REL, VIDEO_CEILING_REL, VIDEO_WALL_REL
 from cozmo.schema import PropertyPlan, SCHEMA_VERSION
 from cozmo.stitch.door_graph import stitch_rooms
+from cozmo.stitch.walk import stitch_walk
 
-DISCLOSURES = [
+PHOTO_DISCLOSURES = [
     "VGGT facebook/VGGT-1B (if installed): pretrained few-view reconstruction, inference only.",
     "YOLO-World yolov8s-worldv2.pt: pretrained open-vocab detector, prompts door/window, inference only.",
     "Photo-tier scale: 0.80 m door measured in 3D, else 0.80×1.20 m floor tiles. Never a fake 12% door. Not LiDAR-metric.",
     "Stitch: detector-door snaps; rooms that share a hub wall pack along it (order = door position, not folder names). No house layout priors.",
+]
+
+VIDEO_DISCLOSURES = [
+    "VGGT facebook/VGGT-1B (if installed): pretrained few-view reconstruction, inference only.",
+    "YOLO-World yolov8s-worldv2.pt: pretrained open-vocab detector, prompts door/window, inference only.",
+    "Video ingest: portrait clip rotated 90° CW; door holds = still camera with walk on both sides.",
+    "Video scale: same 0.80 m door ruler; wall intervals are the ±3% video-tier gate.",
+    "Stitch: walk-graph sequential snaps at doors between consecutive segments. Adjacency from the walk, not YOLO pairing.",
 ]
 
 
@@ -26,10 +37,16 @@ def main(argv: list[str] | None = None) -> int:
     run.add_argument("captures", type=Path, help="Directory with photos/, video/, lidar/")
     run.add_argument("--out", type=Path, default=Path("out"))
     run.add_argument(
+        "--tier",
+        choices=("photos", "video"),
+        default="photos",
+        help="photos = per-folder stills. video = one walkthrough cut at door holds.",
+    )
+    run.add_argument(
         "--only",
         type=str,
         default=None,
-        help="Room folder id to reconstruct (e.g. room_01). Default: all photo folders.",
+        help="Room folder id (photos) or walk_00 (video). Default: all segments/folders.",
     )
     run.add_argument(
         "--backend",
@@ -39,41 +56,67 @@ def main(argv: list[str] | None = None) -> int:
     )
     args = parser.parse_args(argv)
     if args.cmd == "run":
-        return _cmd_run(args.captures, args.out, args.only, args.backend)
+        return _cmd_run(args.captures, args.out, args.only, args.backend, args.tier)
     return 2
 
 
-def _cmd_run(captures: Path, out: Path, only: str | None, backend: str) -> int:
+def _cmd_run(captures: Path, out: Path, only: str | None, backend: str, tier: str = "photos") -> int:
     captures = captures.resolve()
     out = out.resolve()
     out.mkdir(parents=True, exist_ok=True)
-    rooms = load_photo_rooms(captures)
+    extra: dict = {"captures": str(captures), "backend": backend, "tier": tier}
+    if tier == "video":
+        rooms, vextra = load_video_rooms(captures, out)
+        extra.update(vextra)
+        print(f"video holds={len(vextra.get('holds', []))} segments={len(rooms)}")
+    else:
+        rooms = load_photo_rooms(captures)
     if only:
         key = only.lower()
         rooms = [r for r in rooms if r.room_id == key or r.folder.name.lower() == key]
         if not rooms:
-            raise SystemExit(f"No photo folder matching --only {only}")
+            raise SystemExit(f"No folder matching --only {only}")
 
-    built = [reconstruct_room(r, backend=backend) for r in rooms]
-    extra: dict = {"captures": str(captures), "backend": backend}
+    if tier == "video":
+        built = []
+        for r in rooms:
+            print(f"reconstruct {r.room_id} stills={len(r.images)} ...", flush=True)
+            built.append(
+                reconstruct_room(
+                    r,
+                    backend=backend,
+                    wall_rel=VIDEO_WALL_REL,
+                    area_rel=VIDEO_AREA_REL,
+                    ceiling_rel=VIDEO_CEILING_REL,
+                )
+            )
+        disclosures = VIDEO_DISCLOSURES
+    else:
+        built = [reconstruct_room(r, backend=backend) for r in rooms]
+        disclosures = PHOTO_DISCLOSURES
     stitch_flag = "unstitched"
     adjacency = []
     if only is None and len(built) >= 2:
-        result = stitch_rooms(built)
+        if tier == "video":
+            result = stitch_walk(built)
+            stitch_name = "walk_graph"
+        else:
+            result = stitch_rooms(built)
+            stitch_name = "door_graph"
         built = result.rooms
         adjacency = result.adjacency
         extra["stitch_ablation"] = result.ablation
         extra["stitch_notes"] = result.notes
         extra["property_footprint"] = result.ablation.get("property_footprint", {})
         if adjacency:
-            stitch_flag = "door_graph"
+            stitch_flag = stitch_name
     plan = PropertyPlan(
         schema_version=SCHEMA_VERSION,
-        tier="photos",
+        tier=tier,  # type: ignore[arg-type]
         stitch=stitch_flag,  # type: ignore[arg-type]
         rooms=built,
         adjacency=adjacency,
-        disclosures=DISCLOSURES,
+        disclosures=disclosures,
         extra=extra,
     )
     json_path = out / "plan.json"

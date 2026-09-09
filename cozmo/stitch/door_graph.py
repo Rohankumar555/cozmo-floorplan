@@ -432,9 +432,14 @@ def _overlap_report(rooms: list[RoomPlan], hub_id: str) -> dict:
     }
 
 
-def _footprint(rooms: list[RoomPlan]) -> dict:
+def _footprint(
+    rooms: list[RoomPlan],
+    *,
+    ci_rel: float = PHOTO_FOOTPRINT_REL,
+    method: str = "door_graph_aabb_photo_pm8pct",
+) -> dict:
     w, h = _aabb_wh(rooms)
-    rel = PHOTO_FOOTPRINT_REL
+    rel = ci_rel
     return {
         "aabb_width_m": round(w, 3),
         "aabb_depth_m": round(h, 3),
@@ -442,7 +447,7 @@ def _footprint(rooms: list[RoomPlan]) -> dict:
         "ci_rel": rel,
         "aabb_width_ci": [round(w * (1 - rel), 3), round(w * (1 + rel), 3)],
         "aabb_depth_ci": [round(h * (1 - rel), 3), round(h * (1 + rel), 3)],
-        "method": "door_graph_aabb_photo_pm8pct",
+        "method": method,
     }
 
 

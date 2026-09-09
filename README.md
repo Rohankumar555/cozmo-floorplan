@@ -9,7 +9,7 @@ Capture is Route 2 (stock iOS Camera + a LiDAR logging app). This repo is the re
 ```text
 captures/
   photos/<room_name>/*.jpg   # 2–8 stills per room, no depth, no poses
-  video/                     # one walkthrough clip (later)
+  video/*.mov                # one walkthrough; cut at door holds (`--tier video`)
   lidar/                     # depth + poses + intrinsics export (later)
 ```
 
@@ -30,7 +30,8 @@ Omit `--only` to reconstruct **every** photo folder and **stitch** them at doors
 source .venv312/bin/activate
 pip install einops huggingface_hub safetensors
 pip install "git+https://github.com/facebookresearch/vggt.git"
-python -m cozmo run captures/ --out out/ --only room_01 --backend vggt
+python -m cozmo run captures/ --out out/ --backend vggt
+python -m cozmo run captures/ --out out/video --tier video --backend vggt
 ```
 
 Output:
@@ -40,9 +41,9 @@ Output:
 
 ## What this slice does
 
-Photo-tier per room, then a **door-graph stitch** (hub = hallway folder) when you run all folders. Rooms snap at detected doors; if they overlap they slide along that wall. Drift: no camera poses across folders. No house-specific layout priors.
+Photo-tier per room, then a **door-graph stitch** (hub = hallway folder) when you run all folders. `--tier video` cuts the walkthrough at door holds and stitches **in walk order** (`walk_graph`). Drift: door snaps, not poses-as-is.
 
-Not yet: video recon, LiDAR, damage rules.
+Not yet: LiDAR, damage rules.
 
 ## Disclosures
 
