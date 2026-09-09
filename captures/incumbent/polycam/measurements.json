@@ -1,0 +1,46 @@
+{
+  "source": "Polycam 2D floor plan screenshot IMG_0053.PNG",
+  "app": "Polycam Space/Floorplan (iPad Pro LiDAR)",
+  "address_on_plan": "1-13/1 Khaja Guda, Hyderabad, Telangana",
+  "total_area_m2": 86,
+  "role": "incumbent_head_to_head_not_cozmo_lidar",
+  "rooms": [
+    {
+      "polycam_label": "Dining Room",
+      "cozmo_folder": "hallway",
+      "area_m2": 28,
+      "walls_m": { "north": 8.78, "west": 4.64, "east_upper": 0.92, "east_lower": 4.45 },
+      "note": "Long wall 8.78 m matches tape hallway 8.77 m. Dining+Living together are the connector."
+    },
+    {
+      "polycam_label": "Living Room",
+      "cozmo_folder": "hallway",
+      "area_m2": 11,
+      "shape": "L-connector"
+    },
+    {
+      "polycam_label": "Bedroom 1",
+      "cozmo_folder": "room_01",
+      "area_m2": 16,
+      "walls_m": { "north": 4.74, "south": 4.44, "west": 4.00, "east": 2.56 }
+    },
+    {
+      "polycam_label": "Bedroom 2",
+      "cozmo_folder": "room_02",
+      "area_m2": 12,
+      "walls_m": { "south": 3.32, "west": 2.57, "east": 2.43 }
+    },
+    {
+      "polycam_label": "Kitchen",
+      "cozmo_folder": "room_03",
+      "area_m2": 11,
+      "walls_m": { "south": 2.83, "west": 2.45, "east": 2.38, "north_stub": 1.25 }
+    }
+  ],
+  "tape_gt_m": {
+    "room_01": { "a": 3.4, "b": 4.0, "ceiling": 2.45 },
+    "room_02": { "a": 3.2, "b": 4.0 },
+    "hallway": { "a": 4.35, "b": 8.77 },
+    "room_03": null
+  }
+}

@@ -1,0 +1,1123 @@
+{
+  "schema_version": "cozmo.plan.v0",
+  "tier": "photos",
+  "stitch": "door_graph",
+  "rooms": [
+    {
+      "id": "hallway",
+      "source_folder": "hallway",
+      "polygon": [
+        {
+          "x": -1.931511998826104,
+          "y": -8.099602599002527
+        },
+        {
+          "x": 2.2874453274223896,
+          "y": -8.08430344838678
+        },
+        {
+          "x": 2.256739302099662,
+          "y": 0.3833176469937853
+        },
+        {
+          "x": -1.9622180241488318,
+          "y": 0.3680184963780395
+        }
+      ],
+      "walls": [
+        {
+          "id": "hallway-W0",
+          "start": {
+            "x": -1.931511998826104,
+            "y": -8.099602599002527
+          },
+          "end": {
+            "x": 2.2874453274223896,
+            "y": -8.08430344838678
+          },
+          "length": {
+            "value": 4.21898506571372,
+            "ci_low": 3.7127068578280733,
+            "ci_high": 4.725263273599366,
+            "method": "door_width_3d",
+            "unit": "m"
+          }
+        },
+        {
+          "id": "hallway-W1",
+          "start": {
+            "x": 2.2874453274223896,
+            "y": -8.08430344838678
+          },
+          "end": {
+            "x": 2.256739302099662,
+            "y": 0.3833176469937853
+          },
+          "length": {
+            "value": 8.467676769629618,
+            "ci_low": 7.451555557274064,
+            "ci_high": 9.483797981985171,
+            "method": "door_width_3d",
+            "unit": "m"
+          }
+        },
+        {
+          "id": "hallway-W2",
+          "start": {
+            "x": 2.256739302099662,
+            "y": 0.3833176469937853
+          },
+          "end": {
+            "x": -1.9622180241488318,
+            "y": 0.3680184963780395
+          },
+          "length": {
+            "value": 4.21898506571372,
+            "ci_low": 3.7127068578280733,
+            "ci_high": 4.725263273599366,
+            "method": "door_width_3d",
+            "unit": "m"
+          }
+        },
+        {
+          "id": "hallway-W3",
+          "start": {
+            "x": -1.9622180241488318,
+            "y": 0.3680184963780395
+          },
+          "end": {
+            "x": -1.931511998826104,
+            "y": -8.099602599002527
+          },
+          "length": {
+            "value": 8.46767676962962,
+            "ci_low": 7.451555557274065,
+            "ci_high": 9.483797981985173,
+            "method": "door_width_3d",
+            "unit": "m"
+          }
+        }
+      ],
+      "openings": [
+        {
+          "id": "hallway-O0",
+          "kind": "door",
+          "wall_id": "hallway-W1",
+          "width": {
+            "value": 1.415138075418446,
+            "ci_low": 1.3443811716475236,
+            "ci_high": 1.4858949791893683,
+            "method": "door_width_3d_applied",
+            "unit": "m"
+          },
+          "t_start": 0.12,
+          "t_end": 0.28712235409055953,
+          "evidence": "door conf=0.34 IMG_3605.jpg"
+        },
+        {
+          "id": "hallway-O1",
+          "kind": "door",
+          "wall_id": "hallway-W1",
+          "width": {
+            "value": 1.7266049851182654,
+            "ci_low": 1.6402747358623522,
+            "ci_high": 1.8129352343741787,
+            "method": "door_width_3d_applied",
+            "unit": "m"
+          },
+          "t_start": 0.337122353984103,
+          "t_end": 0.5410277500085415,
+          "evidence": "door conf=0.22 IMG_3605.jpg"
+        },
+        {
+          "id": "hallway-O2",
+          "kind": "door",
+          "wall_id": "hallway-W1",
+          "width": {
+            "value": 1.2777343217367456,
+            "ci_low": 1.2138476056499083,
+            "ci_high": 1.3416210378235829,
+            "method": "door_width_3d_applied",
+            "unit": "m"
+          },
+          "t_start": 0.5910277498786544,
+          "t_end": 0.7419232500847439,
+          "evidence": "door conf=0.19 IMG_3600.jpg"
+        },
+        {
+          "id": "hallway-O3",
+          "kind": "door",
+          "wall_id": "hallway-W1",
+          "width": {
+            "value": 1.3854471880877313,
+            "ci_low": 1.3161748286833448,
+            "ci_high": 1.4547195474921177,
+            "method": "door_width_3d_applied",
+            "unit": "m"
+          },
+          "t_start": 0.08,
+          "t_end": 0.24361597469766572,
+          "evidence": "door conf=0.18 IMG_3603.jpg"
+        },
+        {
+          "id": "hallway-O4",
+          "kind": "door",
+          "wall_id": "hallway-W1",
+          "width": {
+            "value": 1.0339242247085265,
+            "ci_low": 0.9822280134731002,
+            "ci_high": 1.0856204359439527,
+            "method": "door_width_3d_applied",
+            "unit": "m"
+          },
+          "t_start": 0.2936159745934428,
+          "t_end": 0.4157184417561981,
+          "evidence": "door conf=0.16 IMG_3600.jpg"
+        },
+        {
+          "id": "hallway-O5",
+          "kind": "door",
+          "wall_id": "hallway-W1",
+          "width": {
+            "value": 1.6932486424709814,
+            "ci_low": 1.6085862103474322,
+            "ci_high": 1.7779110745945306,
+            "method": "door_width_3d_applied",
+            "unit": "m"
+          },
+          "t_start": 0.4657184416784192,
+          "t_end": 0.6656845821603079,
+          "evidence": "door conf=0.15 IMG_3603.jpg"
+        },
+        {
+          "id": "hallway-O6",
+          "kind": "door",
+          "wall_id": "hallway-W3",
+          "width": {
+            "value": 1.5242454588384107,
+            "ci_low": 1.44803318589649,
+            "ci_high": 1.6004577317803312,
+            "method": "door_width_3d_applied",
+            "unit": "m"
+          },
+          "t_start": 0.12,
+          "t_end": 0.30000751567481976,
+          "evidence": "door conf=0.08 IMG_3601.jpg"
+        },
+        {
+          "id": "hallway-O7",
+          "kind": "window",
+          "wall_id": "hallway-W3",
+          "width": {
+            "value": 1.6096221106440025,
+            "ci_low": 1.4164674573667222,
+            "ci_high": 1.8027767639212828,
+            "method": "door_width_3d",
+            "unit": "m"
+          },
+          "t_start": 0.35000751556015547,
+          "t_end": 0.5400976848515854,
+          "evidence": "window conf=0.10 IMG_3601.jpg"
+        },
+        {
+          "id": "hallway-S-hallway-W0",
+          "kind": "door",
+          "wall_id": "hallway-W0",
+          "width": {
+            "value": 0.8,
+            "ci_low": 0.7040000000000001,
+            "ci_high": 0.896,
+            "method": "synthetic_wall_slot",
+            "unit": "m"
+          },
+          "t_start": 0.4051904679040781,
+          "t_end": 0.5948095320959219,
+          "evidence": "synthetic_wall_slot_unique_hub_wall"
+        },
+        {
+          "id": "hallway-P-room_01",
+          "kind": "door",
+          "wall_id": "hallway-W1",
+          "width": {
+            "value": 0.8,
+            "ci_low": 0.7040000000000001,
+            "ci_high": 0.896,
+            "method": "packed_facade_door",
+            "unit": "m"
+          },
+          "t_start": 0.0439887623208818,
+          "t_end": 0.13846567987036834,
+          "evidence": "packed_facade_slot for room_01"
+        },
+        {
+          "id": "hallway-P-room_02",
+          "kind": "door",
+          "wall_id": "hallway-W1",
+          "width": {
+            "value": 0.8,
+            "ci_low": 0.7040000000000001,
+            "ci_high": 0.896,
+            "method": "packed_facade_door",
+            "unit": "m"
+          },
+          "t_start": 0.5873305568331494,
+          "t_end": 0.681807474382636,
+          "evidence": "packed_facade_slot for room_02"
+        },
+        {
+          "id": "hallway-P-room_03",
+          "kind": "door",
+          "wall_id": "hallway-W1",
+          "width": {
+            "value": 0.8,
+            "ci_low": 0.7040000000000001,
+            "ci_high": 0.896,
+            "method": "packed_facade_door",
+            "unit": "m"
+          },
+          "t_start": 0.9027615412252566,
+          "t_end": 0.9972384587747433,
+          "evidence": "packed_facade_slot for room_03"
+        },
+        {
+          "id": "hallway-P-room_01",
+          "kind": "door",
+          "wall_id": "hallway-W1",
+          "width": {
+            "value": 0.8,
+            "ci_low": 0.7040000000000001,
+            "ci_high": 0.896,
+            "method": "packed_facade_door",
+            "unit": "m"
+          },
+          "t_start": 0.18823940308079584,
+          "t_end": 0.2827163206302824,
+          "evidence": "packed_facade_slot for room_01"
+        },
+        {
+          "id": "hallway-P-room_02",
+          "kind": "door",
+          "wall_id": "hallway-W1",
+          "width": {
+            "value": 0.8,
+            "ci_low": 0.7040000000000001,
+            "ci_high": 0.896,
+            "method": "packed_facade_door",
+            "unit": "m"
+          },
+          "t_start": 0.5701104505149398,
+          "t_end": 0.6645873680644264,
+          "evidence": "packed_facade_slot for room_02"
+        },
+        {
+          "id": "hallway-P-room_03",
+          "kind": "door",
+          "wall_id": "hallway-W1",
+          "width": {
+            "value": 0.8,
+            "ci_low": 0.7040000000000001,
+            "ci_high": 0.896,
+            "method": "packed_facade_door",
+            "unit": "m"
+          },
+          "t_start": 0.8346325886594006,
+          "t_end": 0.9291095062088872,
+          "evidence": "packed_facade_slot for room_03"
+        }
+      ],
+      "ceiling_height": {
+        "value": 5.125591989725338,
+        "ci_low": 4.5105209509582975,
+        "ci_high": 5.740663028492379,
+        "method": "door_width_3d",
+        "unit": "m"
+      },
+      "floor_area": {
+        "value": 35.72500183235835,
+        "ci_low": 30.009001539181014,
+        "ci_high": 41.44100212553569,
+        "method": "door_width_3d",
+        "unit": "m2"
+      },
+      "notes": [
+        "pretrained: facebook/VGGT-1B",
+        "device=mps",
+        "scale=door_width_3d mpu=5.39389",
+        "door_widths_u=[0.1688, 0.2039, 0.1931, 0.1699, 0.1483, 0.2033]",
+        "tile_spacings_u=[0.0236, 0.0419]",
+        "images=6",
+        "detections=8"
+      ],
+      "backend": "vggt"
+    },
+    {
+      "id": "room_01",
+      "source_folder": "room_01",
+      "polygon": [
+        {
+          "x": 5.518700869790156,
+          "y": -4.008119675063166
+        },
+        {
+          "x": 2.272706599392062,
+          "y": -4.019890582280382
+        },
+        {
+          "x": 2.2853201559569083,
+          "y": -7.4982573371339125
+        },
+        {
+          "x": 5.531314426355002,
+          "y": -7.486486429916694
+        }
+      ],
+      "walls": [
+        {
+          "id": "room_01-W0",
+          "start": {
+            "x": 5.518700869790156,
+            "y": -4.008119675063166
+          },
+          "end": {
+            "x": 2.272706599392062,
+            "y": -4.019890582280382
+          },
+          "length": {
+            "value": 3.2460156126725535,
+            "ci_low": 2.8564937391518472,
+            "ci_high": 3.6355374861932597,
+            "method": "door_width_3d",
+            "unit": "m"
+          }
+        },
+        {
+          "id": "room_01-W1",
+          "start": {
+            "x": 2.272706599392062,
+            "y": -4.019890582280382
+          },
+          "end": {
+            "x": 2.2853201559569083,
+            "y": -7.4982573371339125
+          },
+          "length": {
+            "value": 3.478389624967205,
+            "ci_low": 3.0609828699711406,
+            "ci_high": 3.8957963799632696,
+            "method": "door_width_3d",
+            "unit": "m"
+          }
+        },
+        {
+          "id": "room_01-W2",
+          "start": {
+            "x": 2.2853201559569083,
+            "y": -7.4982573371339125
+          },
+          "end": {
+            "x": 5.531314426355002,
+            "y": -7.486486429916694
+          },
+          "length": {
+            "value": 3.246015612672553,
+            "ci_low": 2.856493739151847,
+            "ci_high": 3.6355374861932592,
+            "method": "door_width_3d",
+            "unit": "m"
+          }
+        },
+        {
+          "id": "room_01-W3",
+          "start": {
+            "x": 5.531314426355002,
+            "y": -7.486486429916694
+          },
+          "end": {
+            "x": 5.518700869790156,
+            "y": -4.008119675063166
+          },
+          "length": {
+            "value": 3.4783896249672055,
+            "ci_low": 3.060982869971141,
+            "ci_high": 3.89579637996327,
+            "method": "door_width_3d",
+            "unit": "m"
+          }
+        }
+      ],
+      "openings": [
+        {
+          "id": "room_01-O0",
+          "kind": "door",
+          "wall_id": "room_01-W1",
+          "width": {
+            "value": 0.7258353428356484,
+            "ci_low": 0.689543575693866,
+            "ci_high": 0.7621271099774308,
+            "method": "door_width_3d_applied",
+            "unit": "m"
+          },
+          "t_start": 0.12,
+          "t_end": 0.32866993669304423,
+          "evidence": "door conf=0.41 IMG_3586.jpg"
+        },
+        {
+          "id": "room_01-O1",
+          "kind": "door",
+          "wall_id": "room_01-W1",
+          "width": {
+            "value": 0.5335950613751004,
+            "ci_low": 0.5069153083063453,
+            "ci_high": 0.5602748144438554,
+            "method": "door_width_3d_applied",
+            "unit": "m"
+          },
+          "t_start": 0.37866993650858843,
+          "t_end": 0.5320728381114045,
+          "evidence": "door conf=0.37 IMG_3583.jpg"
+        },
+        {
+          "id": "room_01-O2",
+          "kind": "door",
+          "wall_id": "room_01-W1",
+          "width": {
+            "value": 0.5567941426243052,
+            "ci_low": 0.5289544354930898,
+            "ci_high": 0.5846338497555205,
+            "method": "door_width_3d_applied",
+            "unit": "m"
+          },
+          "t_start": 0.5820728379758027,
+          "t_end": 0.7421452285521042,
+          "evidence": "door conf=0.35 IMG_3586.jpg"
+        },
+        {
+          "id": "room_01-O3",
+          "kind": "door",
+          "wall_id": "room_01-W1",
+          "width": {
+            "value": 0.573510395760599,
+            "ci_low": 0.5448348759725691,
+            "ci_high": 0.602185915548629,
+            "method": "door_width_3d_applied",
+            "unit": "m"
+          },
+          "t_start": 0.08,
+          "t_end": 0.2448781354578719,
+          "evidence": "door conf=0.17 IMG_3587.jpg"
+        },
+        {
+          "id": "room_01-O4",
+          "kind": "door",
+          "wall_id": "room_01-W3",
+          "width": {
+            "value": 1.0386119634090318,
+            "ci_low": 0.9866813652385802,
+            "ci_high": 1.0905425615794835,
+            "method": "door_width_3d_applied",
+            "unit": "m"
+          },
+          "t_start": 0.12,
+          "t_end": 0.41858988652509677,
+          "evidence": "door conf=0.14 IMG_3584.jpg"
+        },
+        {
+          "id": "room_01-SHORT-room_01-W0",
+          "kind": "door",
+          "wall_id": "room_01-W0",
+          "width": {
+            "value": 0.7141234347879618,
+            "ci_low": 0.6284286226134064,
+            "ci_high": 0.7998182469625172,
+            "method": "synthetic_wall_slot",
+            "unit": "m"
+          },
+          "t_start": 0.39,
+          "t_end": 0.61,
+          "evidence": "short_face_to_hallway"
+        }
+      ],
+      "ceiling_height": {
+        "value": 4.101809213599817,
+        "ci_low": 3.6095921079678392,
+        "ci_high": 4.594026319231795,
+        "method": "door_width_3d",
+        "unit": "m"
+      },
+      "floor_area": {
+        "value": 11.290907029601776,
+        "ci_low": 9.48436190486549,
+        "ci_high": 13.097452154338061,
+        "method": "door_width_3d",
+        "unit": "m2"
+      },
+      "notes": [
+        "pretrained: facebook/VGGT-1B",
+        "device=mps",
+        "scale=door_width_3d mpu=3.07475",
+        "door_widths_u=[0.3207, 0.2602, 0.2647, 0.2858]",
+        "tile_spacings_u=[0.0241, 0.0366]",
+        "images=6",
+        "detections=5"
+      ],
+      "backend": "vggt"
+    },
+    {
+      "id": "room_02",
+      "source_folder": "room_02",
+      "polygon": [
+        {
+          "x": -1.95220913820289,
+          "y": -2.3920734688422147
+        },
+        {
+          "x": -1.9690005084801716,
+          "y": 2.2383845499299673
+        },
+        {
+          "x": -5.030085964005222,
+          "y": 2.227284175166662
+        },
+        {
+          "x": -5.013294593727941,
+          "y": -2.40317384360552
+        }
+      ],
+      "walls": [
+        {
+          "id": "room_02-W0",
+          "start": {
+            "x": -1.95220913820289,
+            "y": -2.3920734688422147
+          },
+          "end": {
+            "x": -1.9690005084801716,
+            "y": 2.2383845499299673
+          },
+          "length": {
+            "value": 4.630488463836984,
+            "ci_low": 4.074829848176545,
+            "ci_high": 5.186147079497422,
+            "method": "door_width_3d",
+            "unit": "m"
+          }
+        },
+        {
+          "id": "room_02-W1",
+          "start": {
+            "x": -1.9690005084801716,
+            "y": 2.2383845499299673
+          },
+          "end": {
+            "x": -5.030085964005222,
+            "y": 2.227284175166662
+          },
+          "length": {
+            "value": 3.061105582031906,
+            "ci_low": 2.6937729121880776,
+            "ci_high": 3.428438251875735,
+            "method": "door_width_3d",
+            "unit": "m"
+          }
+        },
+        {
+          "id": "room_02-W2",
+          "start": {
+            "x": -5.030085964005222,
+            "y": 2.227284175166662
+          },
+          "end": {
+            "x": -5.013294593727941,
+            "y": -2.40317384360552
+          },
+          "length": {
+            "value": 4.630488463836984,
+            "ci_low": 4.074829848176545,
+            "ci_high": 5.186147079497422,
+            "method": "door_width_3d",
+            "unit": "m"
+          }
+        },
+        {
+          "id": "room_02-W3",
+          "start": {
+            "x": -5.013294593727941,
+            "y": -2.40317384360552
+          },
+          "end": {
+            "x": -1.95220913820289,
+            "y": -2.3920734688422147
+          },
+          "length": {
+            "value": 3.0611055820319053,
+            "ci_low": 2.6937729121880767,
+            "ci_high": 3.428438251875734,
+            "method": "door_width_3d",
+            "unit": "m"
+          }
+        }
+      ],
+      "openings": [
+        {
+          "id": "room_02-O0",
+          "kind": "door",
+          "wall_id": "room_02-W0",
+          "width": {
+            "value": 0.852415110544994,
+            "ci_low": 0.8097943550177442,
+            "ci_high": 0.8950358660722437,
+            "method": "door_width_3d_applied",
+            "unit": "m"
+          },
+          "t_start": 0.12,
+          "t_end": 0.3040875141363927,
+          "evidence": "door conf=0.50 IMG_3598.jpg"
+        },
+        {
+          "id": "room_02-O1",
+          "kind": "door",
+          "wall_id": "room_02-W0",
+          "width": {
+            "value": 0.564071188863364,
+            "ci_low": 0.5358676294201958,
+            "ci_high": 0.5922747483065323,
+            "method": "door_width_3d_applied",
+            "unit": "m"
+          },
+          "t_start": 0.35408751391784704,
+          "t_end": 0.4759042927023373,
+          "evidence": "door conf=0.27 IMG_3595.jpg"
+        },
+        {
+          "id": "room_02-O2",
+          "kind": "door",
+          "wall_id": "room_02-W0",
+          "width": {
+            "value": 0.3704390775467379,
+            "ci_low": 0.351917123669401,
+            "ci_high": 0.3889610314240748,
+            "method": "door_width_3d_applied",
+            "unit": "m"
+          },
+          "t_start": 0.5259042925577184,
+          "t_end": 0.6059042926526931,
+          "evidence": "door conf=0.20 IMG_3598.jpg"
+        },
+        {
+          "id": "room_02-O3",
+          "kind": "door",
+          "wall_id": "room_02-W2",
+          "width": {
+            "value": 0.9813997870334583,
+            "ci_low": 0.9323297976817854,
+            "ci_high": 1.0304697763851312,
+            "method": "door_width_3d_applied",
+            "unit": "m"
+          },
+          "t_start": 0.12,
+          "t_end": 0.33194303683033827,
+          "evidence": "door conf=0.20 IMG_3596.jpg"
+        },
+        {
+          "id": "room_02-O4",
+          "kind": "door",
+          "wall_id": "room_02-W0",
+          "width": {
+            "value": 1.620670964266978,
+            "ci_low": 1.5396374160536292,
+            "ci_high": 1.701704512480327,
+            "method": "door_width_3d_applied",
+            "unit": "m"
+          },
+          "t_start": 0.08,
+          "t_end": 0.4300000004155142,
+          "evidence": "door conf=0.13 IMG_3595.jpg"
+        },
+        {
+          "id": "room_02-O5",
+          "kind": "door",
+          "wall_id": "room_02-W0",
+          "width": {
+            "value": 1.0638671625724165,
+            "ci_low": 1.0106738044437957,
+            "ci_high": 1.1170605207010373,
+            "method": "door_width_3d_applied",
+            "unit": "m"
+          },
+          "t_start": 0.48,
+          "t_end": 0.7097526861109722,
+          "evidence": "door conf=0.09 IMG_3599.jpg"
+        },
+        {
+          "id": "room_02-O6",
+          "kind": "door",
+          "wall_id": "room_02-W2",
+          "width": {
+            "value": 0.3704390775467378,
+            "ci_low": 0.3519171236694009,
+            "ci_high": 0.38896103142407473,
+            "method": "door_width_3d_applied",
+            "unit": "m"
+          },
+          "t_start": 0.381943036578723,
+          "t_end": 0.4619430366736977,
+          "evidence": "door conf=0.08 IMG_3596.jpg"
+        },
+        {
+          "id": "room_02-O7",
+          "kind": "window",
+          "wall_id": "room_02-W3",
+          "width": {
+            "value": 0.47625611281124997,
+            "ci_low": 0.41910537927389996,
+            "ci_high": 0.5334068463485999,
+            "method": "door_width_3d",
+            "unit": "m"
+          },
+          "t_start": 0.12,
+          "t_end": 0.2755830401952748,
+          "evidence": "window conf=0.31 IMG_3599.jpg"
+        },
+        {
+          "id": "room_02-SHORT-room_02-W1",
+          "kind": "door",
+          "wall_id": "room_02-W1",
+          "width": {
+            "value": 0.6734432280470192,
+            "ci_low": 0.5926300406813769,
+            "ci_high": 0.7542564154126614,
+            "method": "synthetic_wall_slot",
+            "unit": "m"
+          },
+          "t_start": 0.39,
+          "t_end": 0.61,
+          "evidence": "short_face_to_hallway"
+        }
+      ],
+      "ceiling_height": {
+        "value": 5.791761095823576,
+        "ci_low": 5.096749764324747,
+        "ci_high": 6.486772427322405,
+        "method": "door_width_3d",
+        "unit": "m"
+      },
+      "floor_area": {
+        "value": 14.174414084185734,
+        "ci_low": 11.906507830716016,
+        "ci_high": 16.442320337655453,
+        "method": "door_width_3d",
+        "unit": "m2"
+      },
+      "notes": [
+        "pretrained: facebook/VGGT-1B",
+        "device=mps",
+        "scale=door_width_3d mpu=5.49724",
+        "door_widths_u=[0.3241, 0.2029, 0.1455, 0.3781]",
+        "tile_spacings_u=[0.0247, 0.0423]",
+        "images=5",
+        "detections=8"
+      ],
+      "backend": "vggt"
+    },
+    {
+      "id": "room_03",
+      "source_folder": "room_3",
+      "polygon": [
+        {
+          "x": 3.5175265443207966,
+          "y": -0.19816419420235443
+        },
+        {
+          "x": 2.258864473565144,
+          "y": -0.20272846425908364
+        },
+        {
+          "x": 2.2724164983297928,
+          "y": -3.939891108273525
+        },
+        {
+          "x": 3.5310785690854445,
+          "y": -3.935326838216794
+        }
+      ],
+      "walls": [
+        {
+          "id": "room_03-W0",
+          "start": {
+            "x": 3.5175265443207966,
+            "y": -0.19816419420235443
+          },
+          "end": {
+            "x": 2.258864473565144,
+            "y": -0.20272846425908364
+          },
+          "length": {
+            "value": 1.2586703464053073,
+            "ci_low": 0.6293351732026536,
+            "ci_high": 1.8880055196079608,
+            "method": "unscaled_scene_units",
+            "unit": "m"
+          }
+        },
+        {
+          "id": "room_03-W1",
+          "start": {
+            "x": 2.258864473565144,
+            "y": -0.20272846425908364
+          },
+          "end": {
+            "x": 2.2724164983297928,
+            "y": -3.939891108273525
+          },
+          "length": {
+            "value": 3.737187215700095,
+            "ci_low": 1.8685936078500476,
+            "ci_high": 5.605780823550143,
+            "method": "unscaled_scene_units",
+            "unit": "m"
+          }
+        },
+        {
+          "id": "room_03-W2",
+          "start": {
+            "x": 2.2724164983297928,
+            "y": -3.939891108273525
+          },
+          "end": {
+            "x": 3.5310785690854445,
+            "y": -3.935326838216794
+          },
+          "length": {
+            "value": 1.2586703464053075,
+            "ci_low": 0.6293351732026538,
+            "ci_high": 1.8880055196079613,
+            "method": "unscaled_scene_units",
+            "unit": "m"
+          }
+        },
+        {
+          "id": "room_03-W3",
+          "start": {
+            "x": 3.5310785690854445,
+            "y": -3.935326838216794
+          },
+          "end": {
+            "x": 3.5175265443207966,
+            "y": -0.19816419420235443
+          },
+          "length": {
+            "value": 3.737187215700095,
+            "ci_low": 1.8685936078500476,
+            "ci_high": 5.605780823550143,
+            "method": "unscaled_scene_units",
+            "unit": "m"
+          }
+        }
+      ],
+      "openings": [
+        {
+          "id": "room_03-O0",
+          "kind": "door",
+          "wall_id": "room_03-W1",
+          "width": {
+            "value": 0.47884198518420396,
+            "ci_low": 0.23942099259210198,
+            "ci_high": 0.7182629777763059,
+            "method": "unscaled_scene_units",
+            "unit": "m"
+          },
+          "t_start": 0.12,
+          "t_end": 0.24812897977724177,
+          "evidence": "door conf=0.13 IMG_3593.jpg"
+        },
+        {
+          "id": "room_03-O1",
+          "kind": "door",
+          "wall_id": "room_03-W1",
+          "width": {
+            "value": 0.4506091161379179,
+            "ci_low": 0.22530455806895894,
+            "ci_high": 0.6759136742068768,
+            "method": "unscaled_scene_units",
+            "unit": "m"
+          },
+          "t_start": 0.2981289797429569,
+          "t_end": 0.41870338239661264,
+          "evidence": "door conf=0.11 IMG_3594.jpg"
+        },
+        {
+          "id": "room_03-O2",
+          "kind": "door",
+          "wall_id": "room_03-W1",
+          "width": {
+            "value": 0.4790485431464366,
+            "ci_low": 0.2395242715732183,
+            "ci_high": 0.7185728147196548,
+            "method": "unscaled_scene_units",
+            "unit": "m"
+          },
+          "t_start": 0.4687033823643492,
+          "t_end": 0.5968876331115239,
+          "evidence": "door conf=0.09 IMG_3593.jpg"
+        },
+        {
+          "id": "room_03-O3",
+          "kind": "window",
+          "wall_id": "room_03-W1",
+          "width": {
+            "value": 0.3019923904607317,
+            "ci_low": 0.15099619523036584,
+            "ci_high": 0.4529885856910975,
+            "method": "unscaled_scene_units",
+            "unit": "m"
+          },
+          "t_start": 0.6468876330772243,
+          "t_end": 0.727695035283902,
+          "evidence": "window conf=0.18 IMG_3594.jpg"
+        },
+        {
+          "id": "room_03-O4",
+          "kind": "window",
+          "wall_id": "room_03-W2",
+          "width": {
+            "value": 0.37175353309781745,
+            "ci_low": 0.18587676654890872,
+            "ci_high": 0.5576302996467262,
+            "method": "unscaled_scene_units",
+            "unit": "m"
+          },
+          "t_start": 0.12,
+          "t_end": 0.4153541681183837,
+          "evidence": "window conf=0.09 IMG_3591.jpg"
+        },
+        {
+          "id": "room_03-SHORT-room_03-W0",
+          "kind": "door",
+          "wall_id": "room_03-W0",
+          "width": {
+            "value": 0.2769074762091679,
+            "ci_low": 0.24367857906406776,
+            "ci_high": 0.310136373354268,
+            "method": "synthetic_wall_slot",
+            "unit": "m"
+          },
+          "t_start": 0.39,
+          "t_end": 0.61,
+          "evidence": "short_face_to_hallway"
+        }
+      ],
+      "ceiling_height": {
+        "value": 0.7692025065414365,
+        "ci_low": 0.38460125327071826,
+        "ci_high": 1.1538037598121549,
+        "method": "unscaled_scene_units",
+        "unit": "m"
+      },
+      "floor_area": {
+        "value": 4.703886727366724,
+        "ci_low": 2.351943363683362,
+        "ci_high": 7.055830091050086,
+        "method": "unscaled_scene_units",
+        "unit": "m2"
+      },
+      "notes": [
+        "pretrained: facebook/VGGT-1B",
+        "device=mps",
+        "tile_scale_implausible_unscaled",
+        "scale=unscaled_scene_units mpu=1.00000",
+        "tile_spacings_u=[0.0235, 0.044]",
+        "images=5",
+        "detections=5"
+      ],
+      "backend": "vggt"
+    }
+  ],
+  "adjacency": [
+    {
+      "room_a": "hallway",
+      "room_b": "room_01",
+      "opening_a": "hallway-O4",
+      "opening_b": "room_01-O0"
+    },
+    {
+      "room_a": "hallway",
+      "room_b": "room_02",
+      "opening_a": "hallway-O6",
+      "opening_b": "room_02-O0"
+    },
+    {
+      "room_a": "hallway",
+      "room_b": "room_03",
+      "opening_a": "hallway-O2",
+      "opening_b": "room_03-O0"
+    }
+  ],
+  "disclosures": [
+    "VGGT facebook/VGGT-1B (if installed): pretrained few-view reconstruction, inference only.",
+    "YOLO-World yolov8s-worldv2.pt: pretrained open-vocab detector, prompts door/window, inference only.",
+    "Photo-tier scale: 0.80 m door measured in 3D, else 0.80\u00d71.20 m floor tiles. Never a fake 12% door. Not LiDAR-metric.",
+    "Stitch: detector-door snaps; rooms that share a hub wall pack along it (order = door position, not folder names). No house layout priors."
+  ],
+  "extra": {
+    "captures": "captures",
+    "backend": "vggt",
+    "stitch_ablation": {
+      "method": "door_snap_overlap_slide",
+      "off_native_aabb_m": [
+        7.495,
+        14.652
+      ],
+      "off_native_aabb_area_m2": 109.808,
+      "on_stitched_aabb_m": [
+        10.561,
+        10.338
+      ],
+      "on_stitched_aabb_area_m2": 109.184,
+      "note": "off = each room in its own frame (not a property). on = detector-door snaps.",
+      "max_sat_overlap_m2": 0.0,
+      "max_hub_overlap_m2": 0.0,
+      "overlap_clear": true,
+      "property_footprint": {
+        "aabb_width_m": 10.561,
+        "aabb_depth_m": 10.338,
+        "aabb_area_m2": 109.184,
+        "ci_rel": 0.08,
+        "aabb_width_ci": [
+          9.716,
+          11.406
+        ],
+        "aabb_depth_ci": [
+          9.511,
+          11.165
+        ],
+        "method": "door_graph_aabb_photo_pm8pct"
+      }
+    },
+    "stitch_notes": [
+      "stitch_hub=hallway",
+      "drift: door snaps; same-wall rooms packed along that wall, no poses",
+      "layout: YOLO doors only, no house priors",
+      "stitch_snap room_01:room_01-O0 -> hallway:hallway-O4 wall=hallway-W1",
+      "stitch_snap room_02:room_02-O0 -> hallway:hallway-O6 wall=hallway-W3",
+      "stitch_snap room_03:room_03-O0 -> hallway:hallway-O2 wall=hallway-W1",
+      "pack_wall=hallway-W1 order=room_01,room_03",
+      "max_sat_overlap_m2=0.0",
+      "max_hub_overlap_m2=0.0"
+    ],
+    "property_footprint": {
+      "aabb_width_m": 10.561,
+      "aabb_depth_m": 10.338,
+      "aabb_area_m2": 109.184,
+      "ci_rel": 0.08,
+      "aabb_width_ci": [
+        9.716,
+        11.406
+      ],
+      "aabb_depth_ci": [
+        9.511,
+        11.165
+      ],
+      "method": "door_graph_aabb_photo_pm8pct"
+    }
+  }
+}

@@ -44,10 +44,20 @@ Output:
 
 - `docs/protocol.md` — one-page stock capture (Camera, Stray, Polycam)
 - `docs/device-matrix.md` — which hardware runs which tier
+- `docs/reproduction.md` — unpack the zip, regenerate every reported number
 - `reports/compliance-matrix.md`
 - `reports/benchmark.md` — tape vs Polycam vs our tiers
+- `reports/ground-truth.json` — steel-tape GT
+- `reports/cache/` — committed `plan.json` snapshots from the runs above
 - `reports/fix-loop.md` — worst gate + shipped hull fix
 - `reports/technical-report.md` — architecture (keep under 6 pages)
+
+Raw photos, the walkthrough MOV, and Stray depth are **not** in git. Pack and attach:
+
+```bash
+python scripts/pack_reproduction.py   # writes dist/cozmo-reproduction-bundle.zip
+unzip dist/cozmo-reproduction-bundle.zip
+```
 
 ## What this slice does
 

@@ -1,0 +1,32 @@
+{
+  "measurer": "Rohan",
+  "method": "steel tape",
+  "unit": "m",
+  "door_prior_m": 0.80,
+  "rooms": {
+    "room_01": {
+      "walls_m": [3.4, 4.0],
+      "ceiling_m": 2.45,
+      "note": "Bedroom 1. Walls are plaster-to-plaster, order not axis-labelled."
+    },
+    "room_02": {
+      "walls_m": [3.2, 4.0],
+      "ceiling_m": null
+    },
+    "hallway": {
+      "walls_m": [4.35, 8.77],
+      "ceiling_m": null,
+      "note": "Dining + living connector. Matches Polycam dining long wall 8.78 m."
+    },
+    "room_03": {
+      "walls_m": null,
+      "ceiling_m": null,
+      "note": "Kitchen. Tape skipped this submit."
+    }
+  },
+  "not_collected": [
+    "repeat capture of the same room",
+    "kitchen tape",
+    "staged damage classes"
+  ]
+}

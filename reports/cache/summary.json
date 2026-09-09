@@ -1,0 +1,219 @@
+{
+  "note": "Cached CLI outputs. Live path: python -m cozmo run ...",
+  "photos_plan.json": {
+    "tier": "photos",
+    "stitch": "door_graph",
+    "rooms": [
+      {
+        "id": "hallway",
+        "walls_m": [
+          4.219,
+          8.468,
+          4.219,
+          8.468
+        ],
+        "ceiling_m": 5.126,
+        "area_m2": 35.725,
+        "scale": "door_width_3d",
+        "n_openings": 15
+      },
+      {
+        "id": "room_01",
+        "walls_m": [
+          3.246,
+          3.478,
+          3.246,
+          3.478
+        ],
+        "ceiling_m": 4.102,
+        "area_m2": 11.291,
+        "scale": "door_width_3d",
+        "n_openings": 6
+      },
+      {
+        "id": "room_02",
+        "walls_m": [
+          4.63,
+          3.061,
+          4.63,
+          3.061
+        ],
+        "ceiling_m": 5.792,
+        "area_m2": 14.174,
+        "scale": "door_width_3d",
+        "n_openings": 9
+      },
+      {
+        "id": "room_03",
+        "walls_m": [
+          1.259,
+          3.737,
+          1.259,
+          3.737
+        ],
+        "ceiling_m": 0.769,
+        "area_m2": 4.704,
+        "scale": "unscaled_scene_units",
+        "n_openings": 6
+      }
+    ]
+  },
+  "photos_fix_after_plan.json": {
+    "tier": "photos",
+    "stitch": "unstitched",
+    "rooms": [
+      {
+        "id": "room_01",
+        "walls_m": [
+          3.617,
+          4.069,
+          3.617,
+          4.069
+        ],
+        "ceiling_m": 4.102,
+        "area_m2": 14.717,
+        "scale": "door_width_3d",
+        "n_openings": 5
+      }
+    ]
+  },
+  "video_plan.json": {
+    "tier": "video",
+    "stitch": "walk_graph",
+    "rooms": [
+      {
+        "id": "walk_00",
+        "walls_m": [
+          10.982,
+          8.499,
+          10.982,
+          8.499
+        ],
+        "ceiling_m": 7.477,
+        "area_m2": 93.332,
+        "scale": "tile_0.80m",
+        "n_openings": 2
+      },
+      {
+        "id": "walk_01",
+        "walls_m": [
+          8.013,
+          8.031,
+          8.013,
+          8.031
+        ],
+        "ceiling_m": 21.747,
+        "area_m2": 64.346,
+        "scale": "tile_0.80m",
+        "n_openings": 4
+      },
+      {
+        "id": "walk_02",
+        "walls_m": [
+          7.588,
+          7.617,
+          7.588,
+          7.617
+        ],
+        "ceiling_m": 12.594,
+        "area_m2": 57.791,
+        "scale": "tile_0.80m",
+        "n_openings": 4
+      },
+      {
+        "id": "walk_03",
+        "walls_m": [
+          1.856,
+          3.523,
+          1.856,
+          3.523
+        ],
+        "ceiling_m": 2.715,
+        "area_m2": 6.539,
+        "scale": "door_width_3d",
+        "n_openings": 4
+      },
+      {
+        "id": "walk_04",
+        "walls_m": [
+          7.887,
+          11.732,
+          7.887,
+          11.732
+        ],
+        "ceiling_m": 13.103,
+        "area_m2": 92.528,
+        "scale": "tile_0.80m",
+        "n_openings": 4
+      },
+      {
+        "id": "walk_05",
+        "walls_m": [
+          3.754,
+          3.329,
+          3.754,
+          3.329
+        ],
+        "ceiling_m": 7.357,
+        "area_m2": 12.498,
+        "scale": "tile_0.80m",
+        "n_openings": 2
+      }
+    ]
+  },
+  "lidar_plan.json": {
+    "tier": "lidar",
+    "stitch": "lidar_poses",
+    "rooms": [
+      {
+        "id": "lidar_01",
+        "walls_m": [
+          4.68,
+          4.959,
+          3.078,
+          6.46,
+          2.309,
+          1.972,
+          3.011,
+          2.548,
+          2.285,
+          2.101,
+          2.18,
+          1.477,
+          3.396,
+          3.169,
+          1.878,
+          4.785,
+          1.68
+        ],
+        "ceiling_m": 2.298,
+        "area_m2": 26.592,
+        "scale": "lidar_depth_percentile",
+        "n_openings": 0
+      },
+      {
+        "id": "lidar_02",
+        "walls_m": [
+          5.248,
+          1.61,
+          1.579,
+          1.052,
+          1.616,
+          0.798,
+          1.488,
+          2.475,
+          2.162,
+          1.291,
+          1.67,
+          2.614,
+          1.268,
+          1.407
+        ],
+        "ceiling_m": 2.298,
+        "area_m2": 10.013,
+        "scale": "lidar_depth_percentile",
+        "n_openings": 0
+      }
+    ]
+  }
+}

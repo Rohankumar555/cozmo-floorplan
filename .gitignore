@@ -14,3 +14,11 @@ weights/
 *.pt
 .huggingface/
 runs/
+Applied AI.md
+captures/photos/**/*.jpg
+captures/photos/**/*.jpeg
+captures/photos/**/*.JPG
+captures/video/*.mov
+captures/video/*.MOV
+captures/video/*.zip
+captures/lidar/property/

@@ -1,0 +1,1201 @@
+{
+  "schema_version": "cozmo.plan.v0",
+  "tier": "video",
+  "stitch": "walk_graph",
+  "rooms": [
+    {
+      "id": "walk_00",
+      "source_folder": "walk_00",
+      "polygon": [
+        {
+          "x": -0.8218133494191675,
+          "y": -3.316294859993276
+        },
+        {
+          "x": 9.657536925084955,
+          "y": -0.032269824506065616
+        },
+        {
+          "x": 7.116082704629573,
+          "y": 8.077531012873237
+        },
+        {
+          "x": -3.36326756987455,
+          "y": 4.793505977386028
+        }
+      ],
+      "walls": [
+        {
+          "id": "walk_00-W0",
+          "start": {
+            "x": -0.8218133494191675,
+            "y": -3.316294859993276
+          },
+          "end": {
+            "x": 9.657536925084955,
+            "y": -0.032269824506065616
+          },
+          "length": {
+            "value": 10.981876096981626,
+            "ci_low": 10.652419814072177,
+            "ci_high": 11.311332379891075,
+            "method": "tile_0.80m",
+            "unit": "m"
+          }
+        },
+        {
+          "id": "walk_00-W1",
+          "start": {
+            "x": 9.657536925084955,
+            "y": -0.032269824506065616
+          },
+          "end": {
+            "x": 7.116082704629573,
+            "y": 8.077531012873237
+          },
+          "length": {
+            "value": 8.498697498830543,
+            "ci_low": 8.243736573865627,
+            "ci_high": 8.753658423795459,
+            "method": "tile_0.80m",
+            "unit": "m"
+          }
+        },
+        {
+          "id": "walk_00-W2",
+          "start": {
+            "x": 7.116082704629573,
+            "y": 8.077531012873237
+          },
+          "end": {
+            "x": -3.36326756987455,
+            "y": 4.793505977386028
+          },
+          "length": {
+            "value": 10.981876096981626,
+            "ci_low": 10.652419814072177,
+            "ci_high": 11.311332379891075,
+            "method": "tile_0.80m",
+            "unit": "m"
+          }
+        },
+        {
+          "id": "walk_00-W3",
+          "start": {
+            "x": -3.36326756987455,
+            "y": 4.793505977386028
+          },
+          "end": {
+            "x": -0.8218133494191675,
+            "y": -3.316294859993276
+          },
+          "length": {
+            "value": 8.498697498830543,
+            "ci_low": 8.243736573865627,
+            "ci_high": 8.753658423795459,
+            "method": "tile_0.80m",
+            "unit": "m"
+          }
+        }
+      ],
+      "openings": [
+        {
+          "id": "walk_00-O0",
+          "kind": "door",
+          "wall_id": "walk_00-W0",
+          "width": {
+            "value": 2.771795075210881,
+            "ci_low": 2.688641222954555,
+            "ci_high": 2.8549489274672073,
+            "method": "tile_0.80m",
+            "unit": "m"
+          },
+          "t_start": 0.12,
+          "t_end": 0.3723972270979009,
+          "evidence": "door conf=0.12 01.jpg"
+        },
+        {
+          "id": "walk_00-O1",
+          "kind": "window",
+          "wall_id": "walk_00-W1",
+          "width": {
+            "value": 2.460390248153078,
+            "ci_low": 2.3865785407084856,
+            "ci_high": 2.5342019555976703,
+            "method": "tile_0.80m",
+            "unit": "m"
+          },
+          "t_start": 0.12,
+          "t_end": 0.40950203822310866,
+          "evidence": "window conf=0.10 04.jpg"
+        }
+      ],
+      "ceiling_height": {
+        "value": 7.47670283621248,
+        "ci_low": 6.878566609315482,
+        "ci_high": 8.07483906310948,
+        "method": "tile_0.80m",
+        "unit": "m"
+      },
+      "floor_area": {
+        "value": 93.33164291788466,
+        "ci_low": 87.73174434281158,
+        "ci_high": 98.93154149295775,
+        "method": "tile_0.80m",
+        "unit": "m2"
+      },
+      "notes": [
+        "pretrained: facebook/VGGT-1B",
+        "device=mps",
+        "scale=tile_0.80m mpu=14.68815",
+        "tile_spacings_u=[0.0545, 0.1201]",
+        "images=6",
+        "detections=2"
+      ],
+      "backend": "vggt"
+    },
+    {
+      "id": "walk_01",
+      "source_folder": "walk_01",
+      "polygon": [
+        {
+          "x": 5.198890436815828,
+          "y": -1.4295231186809116
+        },
+        {
+          "x": -2.4471146248692097,
+          "y": -3.8256327424928465
+        },
+        {
+          "x": -0.04565848047642862,
+          "y": -11.48869859430923
+        },
+        {
+          "x": 7.600346581208608,
+          "y": -9.092588970497296
+        }
+      ],
+      "walls": [
+        {
+          "id": "walk_01-W0",
+          "start": {
+            "x": 5.198890436815828,
+            "y": -1.4295231186809116
+          },
+          "end": {
+            "x": -2.4471146248692097,
+            "y": -3.8256327424928465
+          },
+          "length": {
+            "value": 8.012660902137153,
+            "ci_low": 7.772281075073038,
+            "ci_high": 8.253040729201267,
+            "method": "tile_0.80m",
+            "unit": "m"
+          }
+        },
+        {
+          "id": "walk_01-W1",
+          "start": {
+            "x": -2.4471146248692097,
+            "y": -3.8256327424928465
+          },
+          "end": {
+            "x": -0.04565848047642862,
+            "y": -11.48869859430923
+          },
+          "length": {
+            "value": 8.030539823867148,
+            "ci_low": 7.789623629151134,
+            "ci_high": 8.271456018583162,
+            "method": "tile_0.80m",
+            "unit": "m"
+          }
+        },
+        {
+          "id": "walk_01-W2",
+          "start": {
+            "x": -0.04565848047642862,
+            "y": -11.48869859430923
+          },
+          "end": {
+            "x": 7.600346581208608,
+            "y": -9.092588970497296
+          },
+          "length": {
+            "value": 8.012660902137153,
+            "ci_low": 7.772281075073038,
+            "ci_high": 8.253040729201267,
+            "method": "tile_0.80m",
+            "unit": "m"
+          }
+        },
+        {
+          "id": "walk_01-W3",
+          "start": {
+            "x": 7.600346581208608,
+            "y": -9.092588970497296
+          },
+          "end": {
+            "x": 5.198890436815828,
+            "y": -1.4295231186809116
+          },
+          "length": {
+            "value": 8.030539823867148,
+            "ci_low": 7.789623629151134,
+            "ci_high": 8.271456018583162,
+            "method": "tile_0.80m",
+            "unit": "m"
+          }
+        }
+      ],
+      "openings": [
+        {
+          "id": "walk_01-O0",
+          "kind": "window",
+          "wall_id": "walk_01-W0",
+          "width": {
+            "value": 0.7473220853418757,
+            "ci_low": 0.7249024227816194,
+            "ci_high": 0.769741747902132,
+            "method": "tile_0.80m",
+            "unit": "m"
+          },
+          "t_start": 0.12,
+          "t_end": 0.21326765408761383,
+          "evidence": "window conf=0.12 01.jpg"
+        },
+        {
+          "id": "walk_01-O1",
+          "kind": "window",
+          "wall_id": "walk_01-W1",
+          "width": {
+            "value": 0.6424431877967218,
+            "ci_low": 0.6231698921628201,
+            "ci_high": 0.6617164834306235,
+            "method": "tile_0.80m",
+            "unit": "m"
+          },
+          "t_start": 0.12,
+          "t_end": 0.20000000023502157,
+          "evidence": "window conf=0.11 04.jpg"
+        },
+        {
+          "id": "walk_01-O2",
+          "kind": "window",
+          "wall_id": "walk_01-W2",
+          "width": {
+            "value": 0.7536543732576988,
+            "ci_low": 0.7310447420599678,
+            "ci_high": 0.7762640044554298,
+            "method": "tile_0.80m",
+            "unit": "m"
+          },
+          "t_start": 0.12,
+          "t_end": 0.2140579393615275,
+          "evidence": "window conf=0.08 00.jpg"
+        },
+        {
+          "id": "walk_01-Owalk",
+          "kind": "door",
+          "wall_id": "walk_01-W0",
+          "width": {
+            "value": 0.8,
+            "ci_low": 0.6000000000000001,
+            "ci_high": 1.0,
+            "method": "hypothesized_walk_hold",
+            "unit": "m"
+          },
+          "t_start": 0.4,
+          "t_end": 0.5,
+          "evidence": "walk_hold hypothesized (detector missed door)"
+        }
+      ],
+      "ceiling_height": {
+        "value": 21.747139443656373,
+        "ci_low": 20.007368288163864,
+        "ci_high": 23.48691059914888,
+        "method": "tile_0.80m",
+        "unit": "m"
+      },
+      "floor_area": {
+        "value": 64.34599246975567,
+        "ci_low": 60.48523292157033,
+        "ci_high": 68.20675201794101,
+        "method": "tile_0.80m",
+        "unit": "m2"
+      },
+      "notes": [
+        "pretrained: facebook/VGGT-1B",
+        "device=mps",
+        "scale=tile_0.80m mpu=23.59187",
+        "tile_spacings_u=[0.0339, 0.0775]",
+        "images=6",
+        "detections=3"
+      ],
+      "backend": "vggt"
+    },
+    {
+      "id": "walk_02",
+      "source_folder": "walk_02",
+      "polygon": [
+        {
+          "x": 0.5402171069944335,
+          "y": -2.8894609436921055
+        },
+        {
+          "x": 7.780532444959032,
+          "y": -0.6204866073205804
+        },
+        {
+          "x": 5.5028772817860885,
+          "y": 6.64752931871547
+        },
+        {
+          "x": -1.73743805617851,
+          "y": 4.378554982343944
+        }
+      ],
+      "walls": [
+        {
+          "id": "walk_02-W0",
+          "start": {
+            "x": 0.5402171069944335,
+            "y": -2.8894609436921055
+          },
+          "end": {
+            "x": 7.780532444959032,
+            "y": -0.6204866073205804
+          },
+          "length": {
+            "value": 7.587516769818569,
+            "ci_low": 7.359891266724012,
+            "ci_high": 7.815142272913126,
+            "method": "tile_0.80m",
+            "unit": "m"
+          }
+        },
+        {
+          "id": "walk_02-W1",
+          "start": {
+            "x": 7.780532444959032,
+            "y": -0.6204866073205804
+          },
+          "end": {
+            "x": 5.5028772817860885,
+            "y": 6.64752931871547
+          },
+          "length": {
+            "value": 7.616545709404101,
+            "ci_low": 7.388049338121978,
+            "ci_high": 7.845042080686224,
+            "method": "tile_0.80m",
+            "unit": "m"
+          }
+        },
+        {
+          "id": "walk_02-W2",
+          "start": {
+            "x": 5.5028772817860885,
+            "y": 6.64752931871547
+          },
+          "end": {
+            "x": -1.73743805617851,
+            "y": 4.378554982343944
+          },
+          "length": {
+            "value": 7.587516769818569,
+            "ci_low": 7.359891266724012,
+            "ci_high": 7.815142272913126,
+            "method": "tile_0.80m",
+            "unit": "m"
+          }
+        },
+        {
+          "id": "walk_02-W3",
+          "start": {
+            "x": -1.73743805617851,
+            "y": 4.378554982343944
+          },
+          "end": {
+            "x": 0.5402171069944335,
+            "y": -2.8894609436921055
+          },
+          "length": {
+            "value": 7.616545709404102,
+            "ci_low": 7.388049338121979,
+            "ci_high": 7.845042080686225,
+            "method": "tile_0.80m",
+            "unit": "m"
+          }
+        }
+      ],
+      "openings": [
+        {
+          "id": "walk_02-O0",
+          "kind": "door",
+          "wall_id": "walk_02-W0",
+          "width": {
+            "value": 0.7317510283903003,
+            "ci_low": 0.7097984975385913,
+            "ci_high": 0.7537035592420093,
+            "method": "tile_0.80m",
+            "unit": "m"
+          },
+          "t_start": 0.12,
+          "t_end": 0.2164414380342513,
+          "evidence": "door conf=0.10 03.jpg"
+        },
+        {
+          "id": "walk_02-O1",
+          "kind": "door",
+          "wall_id": "walk_02-W1",
+          "width": {
+            "value": 1.3960507337997272,
+            "ci_low": 1.3541692117857353,
+            "ci_high": 1.437932255813719,
+            "method": "tile_0.80m",
+            "unit": "m"
+          },
+          "t_start": 0.12,
+          "t_end": 0.3032918473890378,
+          "evidence": "door conf=0.09 00.jpg"
+        },
+        {
+          "id": "walk_02-O2",
+          "kind": "door",
+          "wall_id": "walk_02-W1",
+          "width": {
+            "value": 1.7076022892238052,
+            "ci_low": 1.656374220547091,
+            "ci_high": 1.7588303579005193,
+            "method": "tile_0.80m",
+            "unit": "m"
+          },
+          "t_start": 0.3532918470070611,
+          "t_end": 0.5774882681111109,
+          "evidence": "door conf=0.09 00.jpg"
+        },
+        {
+          "id": "walk_02-O3",
+          "kind": "door",
+          "wall_id": "walk_02-W2",
+          "width": {
+            "value": 2.104649866846368,
+            "ci_low": 2.0415103708409768,
+            "ci_high": 2.167789362851759,
+            "method": "tile_0.80m",
+            "unit": "m"
+          },
+          "t_start": 0.12,
+          "t_end": 0.3973832244059335,
+          "evidence": "door conf=0.08 01.jpg"
+        }
+      ],
+      "ceiling_height": {
+        "value": 12.594316914256614,
+        "ci_low": 11.586771561116086,
+        "ci_high": 13.601862267397143,
+        "method": "tile_0.80m",
+        "unit": "m"
+      },
+      "floor_area": {
+        "value": 57.790668298193296,
+        "ci_low": 54.3232282003017,
+        "ci_high": 61.25810839608489,
+        "method": "tile_0.80m",
+        "unit": "m2"
+      },
+      "notes": [
+        "pretrained: facebook/VGGT-1B",
+        "device=mps",
+        "scale=tile_0.80m mpu=15.87273",
+        "tile_spacings_u=[0.0504, 0.1075]",
+        "images=6",
+        "detections=4"
+      ],
+      "backend": "vggt"
+    },
+    {
+      "id": "walk_03",
+      "source_folder": "walk_03",
+      "polygon": [
+        {
+          "x": 2.1420089851935282,
+          "y": -2.3874904501163656
+        },
+        {
+          "x": 0.37069576117748326,
+          "y": -2.942585644091405
+        },
+        {
+          "x": 1.4241218348386921,
+          "y": -6.304076709141603
+        },
+        {
+          "x": 3.1954350588547373,
+          "y": -5.748981515166562
+        }
+      ],
+      "walls": [
+        {
+          "id": "walk_03-W0",
+          "start": {
+            "x": 2.1420089851935282,
+            "y": -2.3874904501163656
+          },
+          "end": {
+            "x": 0.37069576117748326,
+            "y": -2.942585644091405
+          },
+          "length": {
+            "value": 1.8562546193742664,
+            "ci_low": 1.8005669807930385,
+            "ci_high": 1.9119422579554943,
+            "method": "door_width_3d",
+            "unit": "m"
+          }
+        },
+        {
+          "id": "walk_03-W1",
+          "start": {
+            "x": 0.37069576117748326,
+            "y": -2.942585644091405
+          },
+          "end": {
+            "x": 1.4241218348386921,
+            "y": -6.304076709141603
+          },
+          "length": {
+            "value": 3.5226877058691395,
+            "ci_low": 3.4170070746930654,
+            "ci_high": 3.6283683370452136,
+            "method": "door_width_3d",
+            "unit": "m"
+          }
+        },
+        {
+          "id": "walk_03-W2",
+          "start": {
+            "x": 1.4241218348386921,
+            "y": -6.304076709141603
+          },
+          "end": {
+            "x": 3.1954350588547373,
+            "y": -5.748981515166562
+          },
+          "length": {
+            "value": 1.8562546193742664,
+            "ci_low": 1.8005669807930385,
+            "ci_high": 1.9119422579554943,
+            "method": "door_width_3d",
+            "unit": "m"
+          }
+        },
+        {
+          "id": "walk_03-W3",
+          "start": {
+            "x": 3.1954350588547373,
+            "y": -5.748981515166562
+          },
+          "end": {
+            "x": 2.1420089851935282,
+            "y": -2.3874904501163656
+          },
+          "length": {
+            "value": 3.5226877058691395,
+            "ci_low": 3.4170070746930654,
+            "ci_high": 3.6283683370452136,
+            "method": "door_width_3d",
+            "unit": "m"
+          }
+        }
+      ],
+      "openings": [
+        {
+          "id": "walk_03-O0",
+          "kind": "door",
+          "wall_id": "walk_03-W0",
+          "width": {
+            "value": 0.358951962514604,
+            "ci_low": 0.34100436438887377,
+            "ci_high": 0.3768995606403342,
+            "method": "door_width_3d_applied",
+            "unit": "m"
+          },
+          "t_start": 0.12,
+          "t_end": 0.31337431339866767,
+          "evidence": "door conf=0.26 01.jpg"
+        },
+        {
+          "id": "walk_03-O1",
+          "kind": "door",
+          "wall_id": "walk_03-W1",
+          "width": {
+            "value": 0.9282088365753333,
+            "ci_low": 0.8817983947465666,
+            "ci_high": 0.9746192784040999,
+            "method": "door_width_3d_applied",
+            "unit": "m"
+          },
+          "t_start": 0.12,
+          "t_end": 0.3834945002444716,
+          "evidence": "door conf=0.14 04.jpg"
+        },
+        {
+          "id": "walk_03-O2",
+          "kind": "door",
+          "wall_id": "walk_03-W0",
+          "width": {
+            "value": 0.16003332500254996,
+            "ci_low": 0.15203165875242247,
+            "ci_high": 0.16803499125267746,
+            "method": "door_width_3d_applied",
+            "unit": "m"
+          },
+          "t_start": 0.36337431313374696,
+          "t_end": 0.449587337646783,
+          "evidence": "door conf=0.09 01.jpg"
+        },
+        {
+          "id": "walk_03-O3",
+          "kind": "window",
+          "wall_id": "walk_03-W2",
+          "width": {
+            "value": 0.4452323368666136,
+            "ci_low": 0.4318753667606152,
+            "ci_high": 0.458589306972612,
+            "method": "door_width_3d",
+            "unit": "m"
+          },
+          "t_start": 0.12,
+          "t_end": 0.3598552074804797,
+          "evidence": "window conf=0.16 05.jpg"
+        }
+      ],
+      "ceiling_height": {
+        "value": 2.7154744205852213,
+        "ci_low": 2.4982364669384034,
+        "ci_high": 2.932712374232039,
+        "method": "door_width_3d",
+        "unit": "m"
+      },
+      "floor_area": {
+        "value": 6.539005326632528,
+        "ci_low": 6.146665007034576,
+        "ci_high": 6.931345646230479,
+        "method": "door_width_3d",
+        "unit": "m2"
+      },
+      "notes": [
+        "pretrained: facebook/VGGT-1B",
+        "device=mps",
+        "scale=door_width_3d mpu=2.54305",
+        "door_widths_u=[0.3146]",
+        "tile_spacings_u=[0.0361, 0.0859]",
+        "images=6",
+        "detections=4"
+      ],
+      "backend": "vggt"
+    },
+    {
+      "id": "walk_04",
+      "source_folder": "walk_04",
+      "polygon": [
+        {
+          "x": -0.012545923241456647,
+          "y": -3.0626861515948285
+        },
+        {
+          "x": 7.513152157426196,
+          "y": -0.7042784012059278
+        },
+        {
+          "x": 4.004711128956403,
+          "y": 10.49118511002823
+        },
+        {
+          "x": -3.520986951711251,
+          "y": 8.132777359639327
+        }
+      ],
+      "walls": [
+        {
+          "id": "walk_04-W0",
+          "start": {
+            "x": -0.012545923241456647,
+            "y": -3.0626861515948285
+          },
+          "end": {
+            "x": 7.513152157426196,
+            "y": -0.7042784012059278
+          },
+          "length": {
+            "value": 7.886584730950352,
+            "ci_low": 7.649987189021841,
+            "ci_high": 8.123182272878863,
+            "method": "tile_0.80m",
+            "unit": "m"
+          }
+        },
+        {
+          "id": "walk_04-W1",
+          "start": {
+            "x": 7.513152157426196,
+            "y": -0.7042784012059278
+          },
+          "end": {
+            "x": 4.004711128956403,
+            "y": 10.49118511002823
+          },
+          "length": {
+            "value": 11.73232976359025,
+            "ci_low": 11.380359870682543,
+            "ci_high": 12.084299656497958,
+            "method": "tile_0.80m",
+            "unit": "m"
+          }
+        },
+        {
+          "id": "walk_04-W2",
+          "start": {
+            "x": 4.004711128956403,
+            "y": 10.49118511002823
+          },
+          "end": {
+            "x": -3.520986951711251,
+            "y": 8.132777359639327
+          },
+          "length": {
+            "value": 7.886584730950354,
+            "ci_low": 7.649987189021843,
+            "ci_high": 8.123182272878864,
+            "method": "tile_0.80m",
+            "unit": "m"
+          }
+        },
+        {
+          "id": "walk_04-W3",
+          "start": {
+            "x": -3.520986951711251,
+            "y": 8.132777359639327
+          },
+          "end": {
+            "x": -0.012545923241456647,
+            "y": -3.0626861515948285
+          },
+          "length": {
+            "value": 11.732329763590249,
+            "ci_low": 11.380359870682542,
+            "ci_high": 12.084299656497956,
+            "method": "tile_0.80m",
+            "unit": "m"
+          }
+        }
+      ],
+      "openings": [
+        {
+          "id": "walk_04-O0",
+          "kind": "door",
+          "wall_id": "walk_04-W0",
+          "width": {
+            "value": 1.8185150756665616,
+            "ci_low": 1.7639596233965646,
+            "ci_high": 1.8730705279365585,
+            "method": "tile_0.80m",
+            "unit": "m"
+          },
+          "t_start": 0.12,
+          "t_end": 0.35058334345029296,
+          "evidence": "door conf=0.13 05.jpg"
+        },
+        {
+          "id": "walk_04-O1",
+          "kind": "door",
+          "wall_id": "walk_04-W1",
+          "width": {
+            "value": 3.1237513963913965,
+            "ci_low": 3.030038854499655,
+            "ci_high": 3.2174639382831383,
+            "method": "tile_0.80m",
+            "unit": "m"
+          },
+          "t_start": 0.12,
+          "t_end": 0.3862515850931458,
+          "evidence": "door conf=0.13 04.jpg"
+        },
+        {
+          "id": "walk_04-O2",
+          "kind": "window",
+          "wall_id": "walk_04-W2",
+          "width": {
+            "value": 1.9021443811382202,
+            "ci_low": 1.8450800497040736,
+            "ci_high": 1.9592087125723667,
+            "method": "tile_0.80m",
+            "unit": "m"
+          },
+          "t_start": 0.12,
+          "t_end": 0.3611873385032417,
+          "evidence": "window conf=0.15 00.jpg"
+        },
+        {
+          "id": "walk_04-O3",
+          "kind": "window",
+          "wall_id": "walk_04-W2",
+          "width": {
+            "value": 1.063796678364172,
+            "ci_low": 1.0318827780132467,
+            "ci_high": 1.0957105787150971,
+            "method": "tile_0.80m",
+            "unit": "m"
+          },
+          "t_start": 0.4111873381933642,
+          "t_end": 0.5460742017287772,
+          "evidence": "window conf=0.10 00.jpg"
+        }
+      ],
+      "ceiling_height": {
+        "value": 13.10332704897939,
+        "ci_low": 12.055060885061039,
+        "ci_high": 14.15159321289774,
+        "method": "tile_0.80m",
+        "unit": "m"
+      },
+      "floor_area": {
+        "value": 92.52801277200521,
+        "ci_low": 86.9763320056849,
+        "ci_high": 98.07969353832553,
+        "method": "tile_0.80m",
+        "unit": "m2"
+      },
+      "notes": [
+        "pretrained: facebook/VGGT-1B",
+        "device=mps",
+        "scale=tile_0.80m mpu=10.13268",
+        "tile_spacings_u=[0.079, 0.1686]",
+        "images=6",
+        "detections=4"
+      ],
+      "backend": "vggt"
+    },
+    {
+      "id": "walk_05",
+      "source_folder": "walk_05",
+      "polygon": [
+        {
+          "x": 2.6205592234079766,
+          "y": -2.237522091213602
+        },
+        {
+          "x": -0.9615395355798744,
+          "y": -3.3600823354993947
+        },
+        {
+          "x": 0.03404379073479502,
+          "y": -6.536996729015751
+        },
+        {
+          "x": 3.616142549722646,
+          "y": -5.414436484729958
+        }
+      ],
+      "walls": [
+        {
+          "id": "walk_05-W0",
+          "start": {
+            "x": 2.6205592234079766,
+            "y": -2.237522091213602
+          },
+          "end": {
+            "x": -0.9615395355798744,
+            "y": -3.3600823354993947
+          },
+          "length": {
+            "value": 3.7538744013609833,
+            "ci_low": 3.641258169320154,
+            "ci_high": 3.8664906334018125,
+            "method": "tile_0.80m",
+            "unit": "m"
+          }
+        },
+        {
+          "id": "walk_05-W1",
+          "start": {
+            "x": -0.9615395355798744,
+            "y": -3.3600823354993947
+          },
+          "end": {
+            "x": 0.03404379073479502,
+            "y": -6.536996729015751
+          },
+          "length": {
+            "value": 3.329259861195455,
+            "ci_low": 3.2293820653595913,
+            "ci_high": 3.4291376570313186,
+            "method": "tile_0.80m",
+            "unit": "m"
+          }
+        },
+        {
+          "id": "walk_05-W2",
+          "start": {
+            "x": 0.03404379073479502,
+            "y": -6.536996729015751
+          },
+          "end": {
+            "x": 3.616142549722646,
+            "y": -5.414436484729958
+          },
+          "length": {
+            "value": 3.7538744013609833,
+            "ci_low": 3.641258169320154,
+            "ci_high": 3.8664906334018125,
+            "method": "tile_0.80m",
+            "unit": "m"
+          }
+        },
+        {
+          "id": "walk_05-W3",
+          "start": {
+            "x": 3.616142549722646,
+            "y": -5.414436484729958
+          },
+          "end": {
+            "x": 2.6205592234079766,
+            "y": -2.237522091213602
+          },
+          "length": {
+            "value": 3.3292598611954545,
+            "ci_low": 3.229382065359591,
+            "ci_high": 3.429137657031318,
+            "method": "tile_0.80m",
+            "unit": "m"
+          }
+        }
+      ],
+      "openings": [
+        {
+          "id": "walk_05-O0",
+          "kind": "door",
+          "wall_id": "walk_05-W0",
+          "width": {
+            "value": 0.9065204016077122,
+            "ci_low": 0.8793247895594808,
+            "ci_high": 0.9337160136559436,
+            "method": "tile_0.80m",
+            "unit": "m"
+          },
+          "t_start": 0.12,
+          "t_end": 0.36148927339685344,
+          "evidence": "door conf=0.14 00.jpg"
+        },
+        {
+          "id": "walk_05-O1",
+          "kind": "door",
+          "wall_id": "walk_05-W1",
+          "width": {
+            "value": 0.7271602361066993,
+            "ci_low": 0.7053454290234984,
+            "ci_high": 0.7489750431899003,
+            "method": "tile_0.80m",
+            "unit": "m"
+          },
+          "t_start": 0.12,
+          "t_end": 0.33841498303637796,
+          "evidence": "door conf=0.11 02.jpg"
+        }
+      ],
+      "ceiling_height": {
+        "value": 7.356932812040907,
+        "ci_low": 6.7683781870776345,
+        "ci_high": 7.9454874370041795,
+        "method": "tile_0.80m",
+        "unit": "m"
+      },
+      "floor_area": {
+        "value": 12.497623368420237,
+        "ci_low": 11.747765966315024,
+        "ci_high": 13.247480770525451,
+        "method": "tile_0.80m",
+        "unit": "m2"
+      },
+      "notes": [
+        "pretrained: facebook/VGGT-1B",
+        "device=mps",
+        "scale=tile_0.80m mpu=15.75285",
+        "tile_spacings_u=[0.0508, 0.1109]",
+        "images=6",
+        "detections=2"
+      ],
+      "backend": "vggt"
+    }
+  ],
+  "adjacency": [
+    {
+      "room_a": "walk_00",
+      "room_b": "walk_01",
+      "opening_a": "walk_00-O0",
+      "opening_b": "walk_01-Owalk"
+    },
+    {
+      "room_a": "walk_01",
+      "room_b": "walk_02",
+      "opening_a": "walk_01-Owalk",
+      "opening_b": "walk_02-O0"
+    },
+    {
+      "room_a": "walk_02",
+      "room_b": "walk_03",
+      "opening_a": "walk_02-O0",
+      "opening_b": "walk_03-O0"
+    },
+    {
+      "room_a": "walk_03",
+      "room_b": "walk_04",
+      "opening_a": "walk_03-O0",
+      "opening_b": "walk_04-O0"
+    },
+    {
+      "room_a": "walk_04",
+      "room_b": "walk_05",
+      "opening_a": "walk_04-O0",
+      "opening_b": "walk_05-O0"
+    }
+  ],
+  "disclosures": [
+    "VGGT facebook/VGGT-1B (if installed): pretrained few-view reconstruction, inference only.",
+    "YOLO-World yolov8s-worldv2.pt: pretrained open-vocab detector, prompts door/window, inference only.",
+    "Video ingest: portrait clip rotated 90\u00b0 CW; door holds = still camera with walk on both sides.",
+    "Video scale: same 0.80 m door ruler; wall intervals are the \u00b13% video-tier gate.",
+    "Stitch: walk-graph sequential snaps at doors between consecutive segments. Adjacency from the walk, not YOLO pairing."
+  ],
+  "extra": {
+    "captures": "captures",
+    "backend": "vggt",
+    "tier": "video",
+    "video": "/Users/rohankumarbehera/Cozmo AI Assignment/captures/video/IMG_3589.MOV",
+    "duration_s": 168.518,
+    "rotate_90_cw": true,
+    "holds": [
+      {
+        "t_start": 26.836,
+        "t_end": 31.97
+      },
+      {
+        "t_start": 69.541,
+        "t_end": 74.908
+      },
+      {
+        "t_start": 98.944,
+        "t_end": 101.044
+      },
+      {
+        "t_start": 114.346,
+        "t_end": 119.946
+      },
+      {
+        "t_start": 128.581,
+        "t_end": 132.548
+      }
+    ],
+    "segments": [
+      {
+        "id": "walk_00",
+        "t_start": 0.0,
+        "t_end": 29.403,
+        "stills": 6
+      },
+      {
+        "id": "walk_01",
+        "t_start": 29.403,
+        "t_end": 72.225,
+        "stills": 6
+      },
+      {
+        "id": "walk_02",
+        "t_start": 72.225,
+        "t_end": 99.994,
+        "stills": 6
+      },
+      {
+        "id": "walk_03",
+        "t_start": 99.994,
+        "t_end": 117.146,
+        "stills": 6
+      },
+      {
+        "id": "walk_04",
+        "t_start": 117.146,
+        "t_end": 130.564,
+        "stills": 6
+      },
+      {
+        "id": "walk_05",
+        "t_start": 130.564,
+        "t_end": 168.518,
+        "stills": 6
+      }
+    ],
+    "stitch_ablation": {
+      "method": "walk_door_snaps_no_poses",
+      "off_native_aabb_m": [
+        15.474,
+        16.186
+      ],
+      "off_native_aabb_area_m2": 250.461,
+      "on_stitched_aabb_m": [
+        13.179,
+        21.98
+      ],
+      "on_stitched_aabb_area_m2": 289.662,
+      "note": "off = each room in its own frame. on = sequential walk-door snaps.",
+      "max_sat_overlap_m2": 67.0257,
+      "overlap_clear": false,
+      "property_footprint": {
+        "aabb_width_m": 13.179,
+        "aabb_depth_m": 21.98,
+        "aabb_area_m2": 289.662,
+        "ci_rel": 0.03,
+        "aabb_width_ci": [
+          12.783,
+          13.574
+        ],
+        "aabb_depth_ci": [
+          21.32,
+          22.639
+        ],
+        "method": "walk_graph_aabb_video_pm3pct"
+      }
+    },
+    "stitch_notes": [
+      "stitch=walk_graph",
+      "drift: sequential door snaps along the walk, not poses-as-is",
+      "adjacency: consecutive segments (door holds), not YOLO width pairing",
+      "missing detector door: hypothesized walk_hold on shortest wall, not used for scale",
+      "walk_hold_door=walk_01:walk_01-Owalk",
+      "walk_snap walk_01:walk_01-Owalk -> walk_00:walk_00-O0",
+      "walk_hold_door=walk_01:walk_01-Owalk",
+      "walk_snap walk_02:walk_02-O0 -> walk_01:walk_01-Owalk",
+      "walk_snap walk_03:walk_03-O0 -> walk_02:walk_02-O0",
+      "walk_snap walk_04:walk_04-O0 -> walk_03:walk_03-O0",
+      "walk_snap walk_05:walk_05-O0 -> walk_04:walk_04-O0",
+      "max_sat_overlap_m2=67.0257"
+    ],
+    "property_footprint": {
+      "aabb_width_m": 13.179,
+      "aabb_depth_m": 21.98,
+      "aabb_area_m2": 289.662,
+      "ci_rel": 0.03,
+      "aabb_width_ci": [
+        12.783,
+        13.574
+      ],
+      "aabb_depth_ci": [
+        21.32,
+        22.639
+      ],
+      "method": "walk_graph_aabb_video_pm3pct"
+    }
+  }
+}

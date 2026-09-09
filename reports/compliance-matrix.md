@@ -23,3 +23,7 @@ Requirement → path → artifact → status. Items marked skip were out of this
 | Process evidence | git history | photo → stitch → video → lidar commits | **done** |
 | Pretrained disclosure | README | VGGT, YOLO-World | **done** |
 | Kitchen tape / damage staging | — | — | **skipped** |
+| Reproduction bundle | `docs/reproduction.md`, `scripts/pack_reproduction.py` | `dist/cozmo-reproduction-bundle.zip` (not in git) | **done** — photos + MOV + Stray + Polycam PNG |
+| Cached outputs | `reports/cache/` | plan.json snapshots | **done** (live path still runs) |
+| Tape GT | `reports/ground-truth.json` | steel tape | **done** (kitchen skipped) |
+| Incumbent export | `captures/incumbent/polycam/` | PNG + transcribed dimensions | **done** |

@@ -1,0 +1,216 @@
+{
+  "schema_version": "cozmo.plan.v0",
+  "tier": "photos",
+  "stitch": "unstitched",
+  "rooms": [
+    {
+      "id": "room_01",
+      "source_folder": "room_01",
+      "polygon": [
+        {
+          "x": -0.23552955893676425,
+          "y": -2.1137518621677374
+        },
+        {
+          "x": 3.0150907813217134,
+          "y": -0.5270403443298116
+        },
+        {
+          "x": 1.2304035206598665,
+          "y": 3.1291634742525134
+        },
+        {
+          "x": -2.0202168195986108,
+          "y": 1.5424519564145875
+        }
+      ],
+      "walls": [
+        {
+          "id": "room_01-W0",
+          "start": {
+            "x": -0.23552955893676425,
+            "y": -2.1137518621677374
+          },
+          "end": {
+            "x": 3.0150907813217134,
+            "y": -0.5270403443298116
+          },
+          "length": {
+            "value": 3.617206938694782,
+            "ci_low": 3.183142106051408,
+            "ci_high": 4.051271771338156,
+            "method": "door_width_3d",
+            "unit": "m"
+          }
+        },
+        {
+          "id": "room_01-W1",
+          "start": {
+            "x": 3.0150907813217134,
+            "y": -0.5270403443298116
+          },
+          "end": {
+            "x": 1.2304035206598665,
+            "y": 3.1291634742525134
+          },
+          "length": {
+            "value": 4.068529830465136,
+            "ci_low": 3.5803062508093193,
+            "ci_high": 4.556753410120952,
+            "method": "door_width_3d",
+            "unit": "m"
+          }
+        },
+        {
+          "id": "room_01-W2",
+          "start": {
+            "x": 1.2304035206598665,
+            "y": 3.1291634742525134
+          },
+          "end": {
+            "x": -2.0202168195986108,
+            "y": 1.5424519564145875
+          },
+          "length": {
+            "value": 3.6172069386947814,
+            "ci_low": 3.183142106051408,
+            "ci_high": 4.051271771338155,
+            "method": "door_width_3d",
+            "unit": "m"
+          }
+        },
+        {
+          "id": "room_01-W3",
+          "start": {
+            "x": -2.0202168195986108,
+            "y": 1.5424519564145875
+          },
+          "end": {
+            "x": -0.23552955893676425,
+            "y": -2.1137518621677374
+          },
+          "length": {
+            "value": 4.068529830465136,
+            "ci_low": 3.5803062508093193,
+            "ci_high": 4.556753410120952,
+            "method": "door_width_3d",
+            "unit": "m"
+          }
+        }
+      ],
+      "openings": [
+        {
+          "id": "room_01-O0",
+          "kind": "door",
+          "wall_id": "room_01-W0",
+          "width": {
+            "value": 0.7548023428774744,
+            "ci_low": 0.7170622257336007,
+            "ci_high": 0.7925424600213481,
+            "method": "door_width_3d_applied",
+            "unit": "m"
+          },
+          "t_start": 0.12,
+          "t_end": 0.3286699366859653,
+          "evidence": "door conf=0.41 IMG_3586.jpg"
+        },
+        {
+          "id": "room_01-O1",
+          "kind": "door",
+          "wall_id": "room_01-W1",
+          "width": {
+            "value": 0.624124281170941,
+            "ci_low": 0.5929180671123939,
+            "ci_high": 0.655330495229488,
+            "method": "door_width_3d_applied",
+            "unit": "m"
+          },
+          "t_start": 0.12,
+          "t_end": 0.273402901583147,
+          "evidence": "door conf=0.37 IMG_3583.jpg"
+        },
+        {
+          "id": "room_01-O2",
+          "kind": "door",
+          "wall_id": "room_01-W0",
+          "width": {
+            "value": 0.5790149618664163,
+            "ci_low": 0.5500642137730956,
+            "ci_high": 0.6079657099597371,
+            "method": "door_width_3d_applied",
+            "unit": "m"
+          },
+          "t_start": 0.37866993650858843,
+          "t_end": 0.5387423270794596,
+          "evidence": "door conf=0.35 IMG_3586.jpg"
+        },
+        {
+          "id": "room_01-O3",
+          "kind": "door",
+          "wall_id": "room_01-W2",
+          "width": {
+            "value": 0.5963983355970403,
+            "ci_low": 0.5665784188171883,
+            "ci_high": 0.6262182523768922,
+            "method": "door_width_3d_applied",
+            "unit": "m"
+          },
+          "t_start": 0.12,
+          "t_end": 0.2848781354522786,
+          "evidence": "door conf=0.17 IMG_3587.jpg"
+        },
+        {
+          "id": "room_01-O4",
+          "kind": "door",
+          "wall_id": "room_01-W3",
+          "width": {
+            "value": 1.2148218602467935,
+            "ci_low": 1.1540807672344537,
+            "ci_high": 1.2755629532591333,
+            "method": "door_width_3d_applied",
+            "unit": "m"
+          },
+          "t_start": 0.12,
+          "t_end": 0.41858988648681206,
+          "evidence": "door conf=0.14 IMG_3584.jpg"
+        }
+      ],
+      "ceiling_height": {
+        "value": 4.101809213599817,
+        "ci_low": 3.6095921079678392,
+        "ci_high": 4.594026319231795,
+        "method": "door_width_3d",
+        "unit": "m"
+      },
+      "floor_area": {
+        "value": 14.716714333045191,
+        "ci_low": 12.36204003975796,
+        "ci_high": 17.07138862633242,
+        "method": "door_width_3d",
+        "unit": "m2"
+      },
+      "notes": [
+        "pretrained: facebook/VGGT-1B",
+        "device=mps",
+        "scale=door_width_3d mpu=3.07475",
+        "door_widths_u=[0.3207, 0.2602, 0.2647, 0.2858]",
+        "tile_spacings_u=[0.0241, 0.0366]",
+        "images=6",
+        "detections=5"
+      ],
+      "backend": "vggt"
+    }
+  ],
+  "adjacency": [],
+  "disclosures": [
+    "VGGT facebook/VGGT-1B (if installed): pretrained few-view reconstruction, inference only.",
+    "YOLO-World yolov8s-worldv2.pt: pretrained open-vocab detector, prompts door/window, inference only.",
+    "Photo-tier scale: 0.80 m door measured in 3D, else 0.80\u00d71.20 m floor tiles. Never a fake 12% door. Not LiDAR-metric.",
+    "Stitch: detector-door snaps; rooms that share a hub wall pack along it (order = door position, not folder names). No house layout priors."
+  ],
+  "extra": {
+    "captures": "captures",
+    "backend": "vggt",
+    "tier": "photos"
+  }
+}
