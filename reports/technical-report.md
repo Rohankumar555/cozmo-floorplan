@@ -56,7 +56,7 @@ Worst gate: photo `room_01` 4.0 m wall 3.48 m (−13%). Hypothesis: 80th-percent
 
 ## 8. Reproduction
 
-Clean Mac, Python 3.12, `pip install -e .`, VGGT optional as in README. Raw inputs are in `dist/cozmo-reproduction-bundle.zip` (see `docs/reproduction.md`), not git. Cached `plan.json` lives in `reports/cache/`. Commands:
+Clean Mac, Python 3.12, `pip install -e .`, VGGT optional as in README. Repo: `https://github.com/Rohankumar555/cozmo-floorplan`. Raw inputs are the Release zip `reproduction-v1` (see `docs/reproduction.md`), not git. Cached `plan.json` lives in `reports/cache/`. Commands:
 
 ```text
 python -m cozmo run captures/ --out out/ --backend vggt

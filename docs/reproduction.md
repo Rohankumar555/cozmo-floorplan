@@ -1,13 +1,19 @@
 # Reproduction bundle
 
-Raw sensor data is **not** in git (photos ~97 MB, walkthrough MOV ~307 MB, Stray RGB-D ~171 MB). Submit `dist/cozmo-reproduction-bundle.zip` next to the repo.
+Raw sensor data is **not** in git (photos ~97 MB, walkthrough MOV ~307 MB, Stray RGB-D ~171 MB). The zip is a GitHub Release asset on this same repo:
+
+https://github.com/Rohankumar555/cozmo-floorplan/releases/download/reproduction-v1/cozmo-reproduction-bundle.zip
+
+Release page: https://github.com/Rohankumar555/cozmo-floorplan/releases/tag/reproduction-v1
 
 ## Unpack
 
 From a clone of this repo:
 
 ```bash
-unzip dist/cozmo-reproduction-bundle.zip
+curl -L -o cozmo-reproduction-bundle.zip \
+  https://github.com/Rohankumar555/cozmo-floorplan/releases/download/reproduction-v1/cozmo-reproduction-bundle.zip
+unzip cozmo-reproduction-bundle.zip
 ```
 
 That writes `captures/photos/`, `captures/video/IMG_3589.MOV`, `captures/lidar/property/6532fa113b/`, and `captures/incumbent/polycam/`. Do **not** unzip the failed Polycam-web zip (`Cozmox AI Capture.zip`); it is the same MOV.

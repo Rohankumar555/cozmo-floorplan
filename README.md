@@ -1,8 +1,14 @@
 # cozmo-floorplan
 
+**Submit / source of truth:** [github.com/Rohankumar555/cozmo-floorplan](https://github.com/Rohankumar555/cozmo-floorplan)
+
 Local pipeline for the Cozmo case study: handheld iPhone capture in, one stitched dimensioned floor plan plus JSON out.
 
 Capture is Route 2 (stock iOS Camera + a LiDAR logging app). This repo is the reconstruction CLI, not an iPhone app.
+
+**Raw captures** (photos, walkthrough MOV, Stray LiDAR, Polycam PNG) live on the GitHub Release, not in git:
+
+https://github.com/Rohankumar555/cozmo-floorplan/releases/download/reproduction-v1/cozmo-reproduction-bundle.zip
 
 ## Capture layout
 
@@ -52,12 +58,15 @@ Output:
 - `reports/fix-loop.md` — worst gate + shipped hull fix
 - `reports/technical-report.md` — architecture (keep under 6 pages)
 
-Raw photos, the walkthrough MOV, and Stray depth are **not** in git. Pack and attach:
+Raw photos, the walkthrough MOV, and Stray depth are **not** in git. Download the release zip, then unzip at the clone root:
 
 ```bash
-python scripts/pack_reproduction.py   # writes dist/cozmo-reproduction-bundle.zip
-unzip dist/cozmo-reproduction-bundle.zip
+curl -L -o cozmo-reproduction-bundle.zip \
+  https://github.com/Rohankumar555/cozmo-floorplan/releases/download/reproduction-v1/cozmo-reproduction-bundle.zip
+unzip cozmo-reproduction-bundle.zip
 ```
+
+Details: `docs/reproduction.md`. Rebuild locally with `python scripts/pack_reproduction.py`.
 
 ## What this slice does
 
