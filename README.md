@@ -22,7 +22,7 @@ pip install -e .
 python -m cozmo run captures/ --out out/ --only room_01
 ```
 
-Omit `--only` to run the **same per-room function** on every photo folder (still unstitched).
+Omit `--only` to reconstruct **every** photo folder and **stitch** them at doors (`stitch: door_graph`). `--only` stays one room, unstitched.
 
 `--backend auto` uses VGGT when the `vggt` package is installed, otherwise a Manhattan line-box fallback. **Manhattan is not removed.**
 
@@ -40,9 +40,9 @@ Output:
 
 ## What this slice does
 
-Photo-tier **one room** (and the same code path for other folders): few-view 3D → planes → polygon → YOLO-World doors/windows → door-width scale with **wide** intervals.
+Photo-tier per room, then a **door-graph stitch** (hub = hallway folder) when you run all folders. Rooms snap at detected doors; if they overlap they slide along that wall. Drift: no camera poses across folders. No house-specific layout priors.
 
-Not yet: door-graph stitch, video recon, LiDAR, damage rules, drift ablation.
+Not yet: video recon, LiDAR, damage rules.
 
 ## Disclosures
 

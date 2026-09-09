@@ -18,8 +18,9 @@ def write_property_svgs(plan: PropertyPlan, out_dir: Path) -> list[Path]:
         written.append(path)
     if len(plan.rooms) == 1:
         (out_dir / "plan.svg").write_text(_room_svg(plan.rooms[0]), encoding="utf-8")
+    elif plan.stitch == "door_graph":
+        (out_dir / "plan.svg").write_text(_stitched_svg(plan), encoding="utf-8")
     else:
-        # Unstitched: tile rooms in a row until door-graph exists.
         (out_dir / "plan.svg").write_text(_unstitched_svg(plan), encoding="utf-8")
     return written
 
@@ -70,6 +71,75 @@ def _room_svg(room: RoomPlan, width: int = 900, height: int = 700) -> str:
             f'<circle cx="{px:.1f}" cy="{py:.1f}" r="6" fill="{color}"/>'
             f'<text x="{px + 8:.1f}" y="{py - 8:.1f}" font-size="10" font-family="Helvetica" fill="{color}">'
             f"{op.kind} {op.width.value:.2f} m</text>"
+        )
+    return _svg_wrap(width, height, "\n".join(parts))
+
+
+def _stitched_svg(plan: PropertyPlan, width: int = 1100, height: int = 800) -> str:
+    fills = ["#f4efe6", "#e8eef4", "#efe8f4", "#eaf4ea"]
+    xs: list[float] = []
+    ys: list[float] = []
+    for room in plan.rooms:
+        for p in room.polygon:
+            xs.append(p.x)
+            ys.append(p.y)
+    if not xs:
+        return _svg_wrap(width, height, '<text x="40" y="40">No stitched polygons</text>')
+    minx, maxx = min(xs), max(xs)
+    miny, maxy = min(ys), max(ys)
+    pad = 90
+    spanx = max(maxx - minx, 1e-6)
+    spany = max(maxy - miny, 1e-6)
+    scale = min((width - 2 * pad) / spanx, (height - 2 * pad) / spany)
+
+    def xy(x: float, y: float) -> tuple[float, float]:
+        return pad + (x - minx) * scale, height - pad - (y - miny) * scale
+
+    parts = [
+        '<text x="24" y="28" font-size="18" font-family="Helvetica">Stitched plan (door-graph)</text>',
+        (
+            f'<text x="24" y="48" font-size="12" font-family="Helvetica" fill="#444">'
+            f"{len(plan.rooms)} rooms · {len(plan.adjacency)} door links · "
+            f"detector doors · same-wall pack</text>"
+        ),
+    ]
+    for i, room in enumerate(plan.rooms):
+        if len(room.polygon) < 3:
+            continue
+        pts = " ".join(f"{xy(p.x, p.y)[0]:.1f},{xy(p.x, p.y)[1]:.1f}" for p in room.polygon)
+        fill = fills[i % len(fills)]
+        parts.append(
+            f'<polygon points="{pts}" fill="{fill}" stroke="#1f1f1f" stroke-width="2.5" fill-opacity="0.78"/>'
+        )
+        c = xy(
+            sum(p.x for p in room.polygon) / len(room.polygon),
+            sum(p.y for p in room.polygon) / len(room.polygon),
+        )
+        parts.append(
+            f'<text x="{c[0]:.1f}" y="{c[1]:.1f}" font-size="13" font-family="Helvetica" '
+            f'text-anchor="middle">{escape(room.id)}</text>'
+        )
+        for wall in room.walls:
+            mx, my = xy((wall.start.x + wall.end.x) / 2, (wall.start.y + wall.end.y) / 2)
+            parts.append(
+                f'<text x="{mx:.1f}" y="{my:.1f}" font-size="10" font-family="Helvetica" fill="#333">'
+                f"{wall.length.value:.2f}</text>"
+            )
+    for i, adj in enumerate(plan.adjacency):
+        parts.append(
+            f'<text x="24" y="{68 + 16 * i}" font-size="11" '
+            f'font-family="Helvetica" fill="#666">'
+            f"{escape(adj.room_a)} ↔ {escape(adj.room_b)}</text>"
+        )
+    fp = (plan.extra or {}).get("property_footprint") or (plan.extra or {}).get("stitch_ablation", {}).get(
+        "property_footprint"
+    )
+    if fp:
+        parts.append(
+            f'<text x="24" y="{68 + 16 * len(plan.adjacency)}" font-size="11" '
+            f'font-family="Helvetica" fill="#666">'
+            f"footprint {fp.get('aabb_width_m', '?')} × {fp.get('aabb_depth_m', '?')} m  "
+            f"±{int(100 * float(fp.get('ci_rel', 0.08)))}%</text>"
         )
     return _svg_wrap(width, height, "\n".join(parts))
 

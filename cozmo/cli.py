@@ -9,11 +9,13 @@ from cozmo.export.svg import write_property_svgs
 from cozmo.ingest.photos import load_photo_rooms
 from cozmo.reconstruct.room import reconstruct_room
 from cozmo.schema import PropertyPlan, SCHEMA_VERSION
+from cozmo.stitch.door_graph import stitch_rooms
 
 DISCLOSURES = [
     "VGGT facebook/VGGT-1B (if installed): pretrained few-view reconstruction, inference only.",
     "YOLO-World yolov8s-worldv2.pt: pretrained open-vocab detector, prompts door/window, inference only.",
     "Photo-tier scale: 0.80 m door measured in 3D, else 0.80×1.20 m floor tiles. Never a fake 12% door. Not LiDAR-metric.",
+    "Stitch: detector-door snaps; rooms that share a hub wall pack along it (order = door position, not folder names). No house layout priors.",
 ]
 
 
@@ -53,14 +55,26 @@ def _cmd_run(captures: Path, out: Path, only: str | None, backend: str) -> int:
             raise SystemExit(f"No photo folder matching --only {only}")
 
     built = [reconstruct_room(r, backend=backend) for r in rooms]
+    extra: dict = {"captures": str(captures), "backend": backend}
+    stitch_flag = "unstitched"
+    adjacency = []
+    if only is None and len(built) >= 2:
+        result = stitch_rooms(built)
+        built = result.rooms
+        adjacency = result.adjacency
+        extra["stitch_ablation"] = result.ablation
+        extra["stitch_notes"] = result.notes
+        extra["property_footprint"] = result.ablation.get("property_footprint", {})
+        if adjacency:
+            stitch_flag = "door_graph"
     plan = PropertyPlan(
         schema_version=SCHEMA_VERSION,
         tier="photos",
-        stitch="unstitched",
+        stitch=stitch_flag,  # type: ignore[arg-type]
         rooms=built,
-        adjacency=[],
+        adjacency=adjacency,
         disclosures=DISCLOSURES,
-        extra={"captures": str(captures), "backend": backend},
+        extra=extra,
     )
     json_path = out / "plan.json"
     json_path.write_text(plan.model_dump_json(indent=2), encoding="utf-8")
@@ -69,6 +83,7 @@ def _cmd_run(captures: Path, out: Path, only: str | None, backend: str) -> int:
     print(f"Wrote {out / 'plan.svg'}")
     for r in built:
         print(f"  {r.id}: backend={r.backend} walls={len(r.walls)} openings={len(r.openings)}")
+    print(f"  stitch={stitch_flag} adjacencies={len(adjacency)}")
     return 0
 
 

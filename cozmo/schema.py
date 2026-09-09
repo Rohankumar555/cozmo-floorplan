@@ -1,7 +1,7 @@
 """Internal plan schema (v0) until Cozmo publishes theirs.
 
 Every metric field is an Interval so photo-tier honesty is structural, not optional.
-Stitch/adjacency are part of the contract but empty until the door-graph lands.
+Stitch/adjacency are filled by the door-graph when more than one photo folder is run.
 """
 
 from __future__ import annotations

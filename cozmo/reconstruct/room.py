@@ -190,9 +190,6 @@ def _place_openings(
     for d in dets:
         img_i = images.index(d.image) if d.image in images else 0
         wall_i = img_i % len(segs)
-        # Prefer longer walls for doors
-        if d.kind == "door":
-            wall_i = int(np.argmax(wall_lens)) if wall_lens[wall_i] < np.median(wall_lens) else wall_i
         t = used_on_wall.get(wall_i, 0.12)
         x0, y0, x1, y1 = d.xyxy
         box_w, box_h = max(1.0, x1 - x0), max(1.0, y1 - y0)
